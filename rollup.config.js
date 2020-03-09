@@ -2,7 +2,9 @@ import typescript from 'rollup-plugin-typescript2';
 import { terser } from "rollup-plugin-terser";
 import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
+import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
 import pkg from './package.json';
+
 export default {
   external: Object.keys(pkg['dependencies'] || []),
   input: './src/index.ts',
@@ -17,6 +19,10 @@ export default {
     json(),
     resolve({
       mainFields: ['module', 'main']
+    }),
+    obfuscatorPlugin({
+      compact: true,
+      sourceMap: false
     })
   ],
   output: [

@@ -1,4 +1,4 @@
-import {version} from '~/package';
+import { version } from '~/package';
 import Misc from '~/Misc';
 import Geometry from '~/Geometry';
 import Types from '~/Types';
