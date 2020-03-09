@@ -33,6 +33,7 @@ export declare var devDependencies: {
     "jest": string;
     "json2module": string;
     "rollup": string;
+    "rollup-plugin-javascript-obfuscator": string;
     "rollup-plugin-json": string;
     "rollup-plugin-node-resolve": string;
     "rollup-plugin-terser": string;
