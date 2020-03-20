@@ -1,12 +1,13 @@
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from "rollup-plugin-terser";
 import json from 'rollup-plugin-json';
+import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve';
 import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
 import pkg from './package.json';
 
 export default {
-  external: Object.keys(pkg['dependencies'] || []),
+  // external: Object.keys(pkg['dependencies'] || []),
   input: './src/index.ts',
   plugins: [
     typescript({
@@ -17,6 +18,7 @@ export default {
     }),
     terser(),
     json(),
+    commonjs(),
     resolve({
       mainFields: ['module', 'main']
     }),
