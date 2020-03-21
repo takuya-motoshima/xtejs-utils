@@ -136,4 +136,52 @@ export default class {
         return acc;
       }, []);
   }
+
+  /**
+   * Get an array of dates and times at any interval from a range
+   *
+   * @example
+   * import { DateUtils } from 'xtejs-utils';
+   * 
+   * // Get date every 7 years from 2020 to 2030
+   * DateUtils.range(7, 'years', '2020', '2030', 'Y');// ["2020","2027"]
+   * 
+   * // Get date every 7 months from January 2020 to January 2030
+   * DateUtils.range(7, 'months', '2020/1', '2030/1', 'M/Y');// ["1/2020","8/2020","3/2021","10/2021","5/2022","12/2022","7/2023","2/2024","9/2024","4/2025","11/2025","6/2026","1/2027","8/2027","3/2028","10/2028","5/2029","12/2029"]
+   * 
+   * // Get date every 1 week from March 1 to March 31
+   * DateUtils.range(1, 'weeks', '3/1', '3/31', 'ddd, M/D');// ["Thu, 3/1","Thu, 3/8","Thu, 3/15","Thu, 3/22","Thu, 3/29"]
+   * 
+   * // Get date every 7 days from March 1 to March 31
+   * DateUtils.range(7, 'days', '3/1', '3/31', 'M/D');// ["3/1","3/8","3/15","3/22","3/29"]
+   * 
+   * // Get time every 7 hours from 0:00, March 1 to 0:00, March 2
+   * DateUtils.range(7, 'hours', '3/1, 0:00', '3/2, 0:00', 'H:mm');// ["0:00","7:00","14:00","21:00"]
+   * 
+   * // Get time every 30 minutes from 9:00 to 12:00
+   * DateUtils.range(30, 'minutes', '3/1, 9:00', '3/1, 12:00', 'H:mm');// ["9:00","9:30","10:00","10:30","11:00","11:30","12:00"]
+   * 
+   * // Get time every 30 seconds from 9:00 to 9:03
+   * DateUtils.range(30, 'seconds', '3/1, 9:00', '3/1, 9:03', 'H:mm:ss');// ["9:00:00","9:00:30","9:01:00","9:01:30","9:02:00","9:02:30","9:03:00","9:03:30","9:04:00","9:04:30","9:05:00"]
+   * 
+   * @param  {number}                                                      step
+   * @param  {'years'|'months'|'weeks'|'days'|'hours'|'minutes'|'seconds'} unit
+   * @param  {string}                                                      start
+   * @param  {string}                                                      end
+   * @param  {string}                                                      format = 'YYYY-MM-DDTHH:mm:ssZ
+   * @return {string[]}
+   */
+  public static range(
+    step: number,
+    unit: 'years'|'months'|'weeks'|'days'|'hours'|'minutes'|'seconds',
+    start: string,
+    end: string,
+    format = 'YYYY-MM-DDTHH:mm:ssZ'
+  ): string[] {
+    const range = [];
+    for (let target=moment(start).clone(); target.isSameOrBefore(moment(end)); target.add(step, unit)) {
+      range.push(target.format(format));
+    }
+    return range;
+  }
 }
