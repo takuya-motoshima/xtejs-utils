@@ -94,8 +94,47 @@ export default class {
      * @param  {'years'|'months'|'weeks'|'days'|'hours'|'minutes'|'seconds'} unit
      * @param  {string}                                                      start
      * @param  {string}                                                      end
-     * @param  {string}                                                      format = 'YYYY-MM-DDTHH:mm:ssZ
+     * @param  {string}                                                      format = 'YYYY-MM-DDTHH:mm:ssZ'
      * @return {string[]}
      */
     static range(step: number, unit: 'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds', start: string, end: string, format?: string): string[];
+    /**
+     * Add any date or time to the original date or time.
+     *
+     * @example
+     * import { DateUtils } from 'xtejs-utils';
+     *
+  
+  // Add years
+  DateUtils.add('2020/3/21', 1, 'years', 'M/D/Y');// 3/21/2021
+  
+  // Add months
+  DateUtils.add('2020/3/21', 1, 'months', 'M/D/Y');// 4/21/2020
+  
+  // Add weeks
+  DateUtils.add('2020/3/21', 1, 'weeks', 'M/D/Y');// 3/28/2020
+  
+  // Add days
+  DateUtils.add('2020/3/21', 1, 'days', 'M/D/Y');// 3/22/2020
+  
+  // Add hours
+  DateUtils.add('2020/3/21, 9:00:00', 1, 'hours', 'M/D/Y, H:mm:ss');// 3/21/2020, 10:00:00
+  
+  // Add minutes
+  DateUtils.add('2020/3/21, 9:00:00', 1, 'minutes', 'M/D/Y, H:mm:ss');// 3/21/2020, 9:01:00
+  
+  // Add seconds
+  DateUtils.add('2020/3/21, 9:00:00', 1, 'seconds', 'M/D/Y, H:mm:ss');// 3/21/2020, 9:00:01
+  
+  
+  
+     *
+     *
+     * @param  {string}                                                      date
+     * @param  {number}                                                      step
+     * @param  {'years'|'months'|'weeks'|'days'|'hours'|'minutes'|'seconds'} unit
+     * @param  {ssZ'}                                                        format = 'YYYY-MM-DDTHH:mm:ssZ'
+     * @return {string}
+     */
+    static add(date: string, step: number, unit: 'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds', format?: string): string;
 }
