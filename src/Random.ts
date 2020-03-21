@@ -9,7 +9,7 @@ export default class {
    * @param  {number} max
    * @return {number}
    */
-  range(min: number, max: number): number {
+  public static range(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
@@ -21,7 +21,7 @@ export default class {
    * @param  {any[]} collection
    * @return {any}
    */
-  sample(collection: any[]): any {
+  public static sample(collection: any[]): any {
     return collection[Math.floor(Math.random() * collection.length)];
   }
 }

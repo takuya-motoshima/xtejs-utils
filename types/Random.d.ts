@@ -6,12 +6,12 @@ export default class {
      * @param  {number} max
      * @return {number}
      */
-    range(min: number, max: number): number;
+    static range(min: number, max: number): number;
     /**
      * Gets a random element from collection.
      *
      * @param  {any[]} collection
      * @return {any}
      */
-    sample(collection: any[]): any;
+    static sample(collection: any[]): any;
 }
