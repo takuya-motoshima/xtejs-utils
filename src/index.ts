@@ -5,6 +5,7 @@ import Types from '~/Types';
 import Browser from '~/Browser';
 import Datetime from '~/Datetime';
 import Random from '~/Random';
+import Collection from '~/Collection';
 
 export {
   version,
@@ -13,5 +14,6 @@ export {
   Types,
   Browser,
   Datetime,
-  Random
+  Random,
+  Collection
 }

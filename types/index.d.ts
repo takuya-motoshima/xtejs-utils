@@ -5,4 +5,5 @@ import Types from '~/Types';
 import Browser from '~/Browser';
 import Datetime from '~/Datetime';
 import Random from '~/Random';
-export { version, Misc, Geometry, Types, Browser, Datetime, Random };
+import Collection from '~/Collection';
+export { version, Misc, Geometry, Types, Browser, Datetime, Random, Collection };
