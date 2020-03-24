@@ -1,5 +1,4 @@
 import Coordinate from '~/interfaces/Coordinate';
-import Dimensions from '~/interfaces/Dimensions';
 import Rect from '~/interfaces/Rect';
 
 export default class {
@@ -68,7 +67,7 @@ export default class {
       actualHeight
     }:
     {
-      objectFit: 'contain' | 'cover' | 'fill' | 'inherit' | 'initial' | 'none' | 'scale-down' | 'unset',
+      objectFit: 'contain'|'cover'|'fill'|'inherit'|'initial'|'none'|'scale-down'|'unset',
       intrinsicWidth: number,
       intrinsicHeight: number,
       intrinsicTop?: number,
@@ -97,21 +96,6 @@ export default class {
       height = actualHeight * aspectRatio;
     }
     return { top, left, width, height };
-  }
-
-  public static getMediaDimensions(media: HTMLImageElement | HTMLVideoElement | ImageData): Dimensions {
-    if (media instanceof HTMLImageElement) {
-      return { width: media.naturalWidth, height: media.naturalHeight };
-    }
-    if (media instanceof HTMLVideoElement) {
-      return { width: media.videoWidth, height: media.videoHeight };
-    }
-    return { width: media.width, height: media.height };
-  }
-
-  public static isMediaLoaded(media: HTMLImageElement | HTMLVideoElement): boolean {
-    return (media instanceof HTMLImageElement && media.complete) || (media instanceof HTMLVideoElement && media.readyState === 4);
-    // return (media instanceof HTMLImageElement && media.complete) || (media instanceof HTMLVideoElement && media.readyState  >= 3);
   }
 
   public static drawPoint(canvas: HTMLCanvasElement, { x, y, r = 3, color = 'aqua' }: { x: number, y: number, r?: number, color?: string }): void {

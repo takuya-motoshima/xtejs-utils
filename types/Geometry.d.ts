@@ -1,5 +1,4 @@
 import Coordinate from '~/interfaces/Coordinate';
-import Dimensions from '~/interfaces/Dimensions';
 import Rect from '~/interfaces/Rect';
 export default class {
     static calculateRotatedRectCoordinates({ x, y, width, height, degree }: {
@@ -26,8 +25,6 @@ export default class {
         width: number;
         height: number;
     };
-    static getMediaDimensions(media: HTMLImageElement | HTMLVideoElement | ImageData): Dimensions;
-    static isMediaLoaded(media: HTMLImageElement | HTMLVideoElement): boolean;
     static drawPoint(canvas: HTMLCanvasElement, { x, y, r, color }: {
         x: number;
         y: number;
