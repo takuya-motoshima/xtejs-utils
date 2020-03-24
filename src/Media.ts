@@ -38,6 +38,8 @@ export default class {
       return media.complete;
     } else if (media instanceof HTMLVideoElement) {
       return media.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA;
+    } else {
+      throw new Error('Invalid argument element');
     }
   }
 

@@ -6,6 +6,7 @@ import Browser from '~/Browser';
 import Datetime from '~/Datetime';
 import Random from '~/Random';
 import Collection from '~/Collection';
+import Media from '~/Media';
 
 export {
   version,
@@ -15,5 +16,6 @@ export {
   Browser,
   Datetime,
   Random,
-  Collection
+  Collection,
+  Media
 }
