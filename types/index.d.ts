@@ -7,4 +7,5 @@ import Datetime from '~/Datetime';
 import Random from '~/Random';
 import Collection from '~/Collection';
 import Media from '~/Media';
-export { version, Misc, Graphics, Types, Browser, Datetime, Random, Collection, Media };
+import Template from '~/Template';
+export { version, Misc, Graphics, Types, Browser, Datetime, Random, Collection, Media, Template };

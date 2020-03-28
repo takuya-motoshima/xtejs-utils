@@ -7,6 +7,7 @@ import Datetime from '~/Datetime';
 import Random from '~/Random';
 import Collection from '~/Collection';
 import Media from '~/Media';
+import Template from '~/Template';
 
 export {
   version,
@@ -17,5 +18,6 @@ export {
   Datetime,
   Random,
   Collection,
-  Media
+  Media,
+  Template
 }
