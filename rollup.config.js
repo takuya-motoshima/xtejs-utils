@@ -5,6 +5,7 @@ import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve';
 import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
 import alias from '@rollup/plugin-alias';
+import replace from '@rollup/plugin-replace';
 import pkg from './package.json';
 
 export default {
@@ -12,12 +13,16 @@ export default {
   input: './src/index.ts',
   plugins: [
     alias({
-      entries: [
-        {
-          find: 'handlebars',
-          replacement: 'handlebars/dist/handlebars.min.js'
-        }
-      ]
+      entries: {
+        handlebars: 'handlebars/dist/handlebars.js'
+      }
+    }),
+    replace({
+      // When you "each" an object in handlebars.js, "global.Symbol" is an undefined error because there is no reference to the "window" object in "global".So replace global with window.
+      include: '**/handlebars.*',
+      values: {
+        'global.Symbol': 'window.Symbol'
+      }
     }),
     typescript({
       tsconfigDefaults: { compilerOptions: {} },

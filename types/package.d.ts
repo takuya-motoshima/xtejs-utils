@@ -29,6 +29,7 @@ export declare var bugs: {
 export declare var homepage: string;
 export declare var devDependencies: {
     "@rollup/plugin-alias": string;
+    "@rollup/plugin-replace": string;
     "@types/jest": string;
     "fetch-mock": string;
     jest: string;

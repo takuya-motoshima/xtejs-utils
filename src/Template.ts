@@ -67,7 +67,7 @@ export default class {
    * @param {string} source
    */
   public static compile(source: string): HandlebarsTemplateDelegate<any> {
-    return Handlebars.compile<any>(source);
+    return Handlebars.create().compile<any>(source);
   }
 
   /**

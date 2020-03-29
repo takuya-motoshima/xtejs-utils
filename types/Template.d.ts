@@ -18,16 +18,16 @@ export default class {
      *   </ul>`;
      *
      * let template = Template.compile(source);
-     * template({ name: 'Alan', hometown: 'Texas',
-     *   kids: [ { name: 'Jimmy', age: '12' }, { name: 'Sally', age: '4' } ]});
+     *
+     * template({ name: 'Alan', hometown: 'Texas', kids: [ { name: 'Jimmy', age: '12' }, { name: 'Sally', age: '4' } ]});
      * // Would render:
      * // <p>Hello, my name is Alan.I am from Texas.I have 2 kids:</p>
      * // <ul>
      * //   <li>Jimmy is 12</li>
      * //   <li>Sally is 4</li>
      * // </ul>
-     * template({ name: 'Softly', hometown: 'Michigan',
-     *   kids: [ { name: 'Potter', age: '9' }, { name: 'Ludge', age: '7' } ]});
+     *
+     * template({ name: 'Softly', hometown: 'Michigan', kids: [ { name: 'Potter', age: '9' }, { name: 'Ludge', age: '7' } ]});
      * // Would render:
      * // <p>Hello, my name is Softly.I am from Michigan.I have 2 kids:</p>
      * // <ul>
@@ -35,21 +35,31 @@ export default class {
      * //   <li>Ludge is 7</li>
      * // </ul>
      *
-     * // IF example
+     * // IF
      * source = `
      *   {{#if author}}
      *     <h1>{{firstName}} {{lastName}}</h1>
      *   {{else}}
      *     <h1>Unknown Author</h1>
      *   {{/if}}`;
+     *
      * template = Template.compile(source);
+     *
      * template({ author: true, firstName: 'Yehuda', lastName: 'Katz' });
-     * // Would render:
-     * // <h1>Yehuda Katz</h1>
+     * // Would render: <h1>Yehuda Katz</h1>
      *
      * template({ author: false, firstName: 'Yehuda', lastName: 'Katz' });
+     * // Would render: <h1>Unknown Author</h1>
+     *
+     * // HTML-escaping
+     * source = `
+     *   raw: {{{specialChars}}}
+     *   html-escaped: {{specialChars}}`;
+     *
+     * Template.compile(source)({ specialChars: "& < > \" ' ` =" });
      * // Would render:
-     * // <h1>Unknown Author</h1>
+     * // raw: & < > " ' ` =
+     * // html-escaped: &amp; &lt; &gt; &quot; &#x27; &#x60; &#x3D;
      *
      * @param {string} source
      */
@@ -68,28 +78,37 @@ export default class {
      *       <li>{{name}} is {{age}}</li>
      *     {{/kids}}
      *   </ul>`;
-     * Template.render(source, { name: 'Beil', hometown: 'New York',
-     *   kids: [ { name: 'Jollye', age: '20' } ]});
+     *
+     * Template.render(source, { name: 'Beil', hometown: 'New York', kids: [ { name: 'Jollye', age: '20' } ]});
      * // Would render:
      * // <p>Hello, my name is Beil.I am from New York.I have 1 kids:</p>
      * // <ul>
      * //   <li>Jollye is 20</li>
      * // </ul>
      *
-     * // IF example
+     * // IF
      * source = `
      *   {{#if author}}
      *     <h1>{{firstName}} {{lastName}}</h1>
      *   {{else}}
      *     <h1>Unknown Author</h1>
      *   {{/if}}`;
+     *
      * Template.render(source, { author: true, firstName: 'Yehuda', lastName: 'Katz' });
-     * // Would render:
-     * // <h1>Yehuda Katz</h1>
+     * // Would render: <h1>Yehuda Katz</h1>
      *
      * Template.render(source, { author: false, firstName: 'Yehuda', lastName: 'Katz' });
+     * // Would render: <h1>Unknown Author</h1>
+     *
+     * // HTML-escaping
+     * source = `
+     *   raw: {{{specialChars}}}
+     *   html-escaped: {{specialChars}}`;
+     *
+     * Template.render(source, { specialChars: "& < > \" ' ` =" });
      * // Would render:
-     * // <h1>Unknown Author</h1>
+     * // raw: & < > " ' ` =
+     * // html-escaped: &amp; &lt; &gt; &quot; &#x27; &#x60; &#x3D;
      *
      * @param {string} source
      * @param {Object} data

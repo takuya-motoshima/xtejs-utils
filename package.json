@@ -45,6 +45,7 @@
   "homepage": "https://github.com/takuya-motoshima/xtejs-utils#readme",
   "devDependencies": {
     "@rollup/plugin-alias": "^3.0.1",
+    "@rollup/plugin-replace": "^2.3.1",
     "@types/jest": "^24.0.23",
     "fetch-mock": "^8.0.0",
     "jest": "^24.9.0",
