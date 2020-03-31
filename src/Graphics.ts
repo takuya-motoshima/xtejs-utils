@@ -161,4 +161,48 @@ export default class {
     }
     context.putImageData(imageData, 0, 0, 0, 0, imageData.width, imageData.height);
   }
+
+  /**
+   * Get the inherent width of an element
+   * 
+   * @param  {HTMLElement} element
+   * @return {number}
+   */
+  public static getIntrinsicWidth(element: HTMLElement): number {
+    const styles = getComputedStyle(element);
+    return parseFloat(styles.width) - parseFloat(styles.paddingRight) - parseFloat(styles.borderRightWidth) - parseFloat(styles.paddingLeft) - parseFloat(styles.borderLeftWidth);
+  }
+
+  /**
+   * Get the inherent height of an element
+   * 
+   * @param  {HTMLElement} element
+   * @return {number}
+   */
+  public static getIntrinsicHeight(element: HTMLElement): number {
+    const styles = getComputedStyle(element);
+    return parseFloat(styles.height) - parseFloat(styles.paddingTop) - parseFloat(styles.borderTopWidth) - parseFloat(styles.paddingBottom) - parseFloat(styles.borderBottomWidth);
+  }
+
+  /**
+   * Get the inherent top of an element
+   * 
+   * @param  {HTMLElement} element
+   * @return {number}
+   */
+  public static getIntrinsicTop(element: HTMLElement): number {
+    const styles = getComputedStyle(element);
+    return parseFloat(styles.paddingTop) + parseFloat(styles.borderTopWidth) + parseFloat(styles.marginTop);
+  }
+
+  /**
+   * Get the inherent left of an element
+   * 
+   * @param  {HTMLElement} element
+   * @return {number}
+   */
+  public static getIntrinsicLeft(element: HTMLElement): number {
+    const styles = getComputedStyle(element);
+    return parseFloat(styles.paddingLeft) + parseFloat(styles.borderLeftWidth) + parseFloat(styles.marginLeft);
+  }
 }

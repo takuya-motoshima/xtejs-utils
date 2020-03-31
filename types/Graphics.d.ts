@@ -49,4 +49,32 @@ export default class {
         color?: string;
     }): void;
     static flipHorizontal(canvas: HTMLCanvasElement): void;
+    /**
+     * Get the inherent width of an element
+     *
+     * @param  {HTMLElement} element
+     * @return {number}
+     */
+    static getIntrinsicWidth(element: HTMLElement): number;
+    /**
+     * Get the inherent height of an element
+     *
+     * @param  {HTMLElement} element
+     * @return {number}
+     */
+    static getIntrinsicHeight(element: HTMLElement): number;
+    /**
+     * Get the inherent top of an element
+     *
+     * @param  {HTMLElement} element
+     * @return {number}
+     */
+    static getIntrinsicTop(element: HTMLElement): number;
+    /**
+     * Get the inherent left of an element
+     *
+     * @param  {HTMLElement} element
+     * @return {number}
+     */
+    static getIntrinsicLeft(element: HTMLElement): number;
 }
