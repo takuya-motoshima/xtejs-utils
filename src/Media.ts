@@ -1,4 +1,4 @@
-import Dimensions from '~/interfaces/Dimensions';
+import IDimensions from '~/interfaces/IDimensions';
 
 export default class {
 
@@ -6,9 +6,9 @@ export default class {
    * Get the dimensions of a media element
    *
    * @param  {HTMLImageElement|HTMLVideoElement|ImageData} media
-   * @return {Dimensions}
+   * @return {IDimensions}
    */
-  public static getMediaDimensions(media: HTMLImageElement|HTMLVideoElement|ImageData): Dimensions {
+  public static getMediaDimensions(media: HTMLImageElement|HTMLVideoElement|ImageData): IDimensions {
     if (media instanceof HTMLImageElement) {
       return {
         width: media.naturalWidth,

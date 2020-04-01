@@ -1,9 +1,9 @@
-import Coordinate from '~/interfaces/Coordinate';
-import Rect from '~/interfaces/Rect';
+import ICoordinate from '~/interfaces/ICoordinate';
+import IRect from '~/interfaces/IRect';
 
 export default class {
 
-  public static calculateRotatedRectCoordinates({ x, y, width, height, degree = 0 }: { x: number, y: number, width: number, height: number, degree?: number }): Rect {
+  public static calculateRotatedRectCoordinates({ x, y, width, height, degree = 0 }: { x: number, y: number, width: number, height: number, degree?: number }): IRect {
     let topleft;
     let topright;
     let bottomright;
@@ -24,7 +24,7 @@ export default class {
     return { topleft, topright, bottomright, bottomleft };
   }
 
-  private static calculateRotationCoordinate({ x, y, cx = 0, cy = 0, degree = 0 }: { x: number, y: number, cx?: number, cy?: number, degree?: number }): Coordinate {
+  private static calculateRotationCoordinate({ x, y, cx = 0, cy = 0, degree = 0 }: { x: number, y: number, cx?: number, cy?: number, degree?: number }): ICoordinate {
     const radian = degree * (Math.PI / 180);
     const sin = Math.sin(radian); 
     const cos = Math.cos(radian);
@@ -34,7 +34,7 @@ export default class {
     };
   }
 
-  public static calculateCenterCoordinate(...points: Coordinate[]): Coordinate {
+  public static calculateCenterCoordinate(...points: ICoordinate[]): ICoordinate {
     const sum = points.reduce((sum, { x, y }) => {
       sum.x += x;
       sum.y += y;
@@ -45,7 +45,7 @@ export default class {
     return sum;
   }
 
-  public static calculateAngleBetweenCoordinates(point1: Coordinate, point2: Coordinate): number {
+  public static calculateAngleBetweenCoordinates(point1: ICoordinate, point2: ICoordinate): number {
     const radian = Math.atan2(point2.y - point1.y, point2.x - point1.x);
     const degree = radian * 180 / Math.PI;
     // const radian = Math.atan2(point2.x - point1.x, point2.y - point1.y);

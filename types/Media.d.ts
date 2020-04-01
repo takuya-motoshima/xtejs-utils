@@ -1,12 +1,12 @@
-import Dimensions from '~/interfaces/Dimensions';
+import IDimensions from '~/interfaces/IDimensions';
 export default class {
     /**
      * Get the dimensions of a media element
      *
      * @param  {HTMLImageElement|HTMLVideoElement|ImageData} media
-     * @return {Dimensions}
+     * @return {IDimensions}
      */
-    static getMediaDimensions(media: HTMLImageElement | HTMLVideoElement | ImageData): Dimensions;
+    static getMediaDimensions(media: HTMLImageElement | HTMLVideoElement | ImageData): IDimensions;
     /**
      * Returns TRUE if the media element is loading a resource
      *

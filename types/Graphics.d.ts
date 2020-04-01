@@ -1,5 +1,5 @@
-import Coordinate from '~/interfaces/Coordinate';
-import Rect from '~/interfaces/Rect';
+import ICoordinate from '~/interfaces/ICoordinate';
+import IRect from '~/interfaces/IRect';
 export default class {
     static calculateRotatedRectCoordinates({ x, y, width, height, degree }: {
         x: number;
@@ -7,10 +7,10 @@ export default class {
         width: number;
         height: number;
         degree?: number;
-    }): Rect;
+    }): IRect;
     private static calculateRotationCoordinate;
-    static calculateCenterCoordinate(...points: Coordinate[]): Coordinate;
-    static calculateAngleBetweenCoordinates(point1: Coordinate, point2: Coordinate): number;
+    static calculateCenterCoordinate(...points: ICoordinate[]): ICoordinate;
+    static calculateAngleBetweenCoordinates(point1: ICoordinate, point2: ICoordinate): number;
     static calculateFitDimensions({ objectFit, intrinsicWidth, intrinsicHeight, intrinsicTop, intrinsicLeft, actualWidth, actualHeight }: {
         objectFit: 'contain' | 'cover' | 'fill' | 'inherit' | 'initial' | 'none' | 'scale-down' | 'unset';
         intrinsicWidth: number;
