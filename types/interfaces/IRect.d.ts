@@ -1,7 +1,10 @@
-import ICoordinate from '~/interfaces/ICoordinate';
 export default interface  {
-    topleft: ICoordinate;
-    topright: ICoordinate;
-    bottomright: ICoordinate;
-    bottomleft: ICoordinate;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    destinationX?: number;
+    destinationY?: number;
+    destinationWidth?: number;
+    destinationHeight?: number;
 }

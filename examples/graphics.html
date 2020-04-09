@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XteJS Utils | Graphics example</title>
+  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/graphics.css?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->">
+</head>
+<body class="min-vh-100">
+
+  <div id="loader" class="loader loader-bar is-active" data-text data-rounded ></div>
+
+  <div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+
+      <div class="col-12 col-md-3 col-xl-2 sidebar">
+
+        <nav class="collapse controls">
+
+          <div class="form-group">
+            <label class="h6" for="objectFit">ObjectFit</label>
+            <select action-change-object-fit class="form-control" id="objectFit">
+              <option value="fill" selected>fill</option>
+              <option value="contain">contain</option>
+              <option value="cover">cover</option>
+            </select>
+          </div>
+
+        </nav>
+      </div>
+
+      <main class="col-12 col-md-4 col-xl-5 py-md-3 pl-md-5 content" role="main">
+
+        <div class="sample-image-wrapper fullsize centering">
+          <img class="sample-image" id="sampleImage">
+        </div>
+
+        <div id="imagePicker" class="image-picker py-3 px-2">
+          <div class="image-list-wrapper">
+            <h6>Select sample image</h6>
+            <ul id="imageList" class="image-list list-group list-group-horizontal flex-wrap pt-1">
+              <li action-select-image class="list-group-item selected"><img src="images/landscape-rectangle.png"></li>
+              <li action-select-image class="list-group-item"><img src="images/portrait-rectangle.png"></li>
+            </ul>
+          </div>
+
+          <div class="vertical-border"></div>
+
+          <div class="image-uploader">
+            <h6>Use any image</h6>
+            <label>
+              <span class="btn btn-outline-primary">
+                <i class="fas fa-upload mr-1"></i>Upload<input action-upload-image type="file" class="d-none" accept="image/*">
+              </span>
+            </label>
+          </div>
+        </div>
+      </main>
+    
+      <div class="col-12 col-md-4 col-xl-5 py-md-3 pl-md-5">
+        <div class="result-image-wrapper fullsize centering">
+          <canvas class="result-image" id="resultImage"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="module" src="scripts/graphics.js?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->"></script>
+</body>
+</html>

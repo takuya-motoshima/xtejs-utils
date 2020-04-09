@@ -1,80 +1,141 @@
 import ICoordinate from '~/interfaces/ICoordinate';
 import IRect from '~/interfaces/IRect';
+import IDimensions from '~/interfaces/IDimensions';
 export default class {
-    static calculateRotatedRectCoordinates({ x, y, width, height, degree }: {
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-        degree?: number;
-    }): IRect;
-    private static calculateRotationCoordinate;
-    static calculateCenterCoordinate(...points: ICoordinate[]): ICoordinate;
-    static calculateAngleBetweenCoordinates(point1: ICoordinate, point2: ICoordinate): number;
-    static calculateFitDimensions({ objectFit, intrinsicWidth, intrinsicHeight, intrinsicTop, intrinsicLeft, actualWidth, actualHeight }: {
-        objectFit: 'contain' | 'cover' | 'fill' | 'inherit' | 'initial' | 'none' | 'scale-down' | 'unset';
-        intrinsicWidth: number;
-        intrinsicHeight: number;
-        intrinsicTop?: number;
-        intrinsicLeft?: number;
-        actualWidth: number;
-        actualHeight: number;
-    }): {
-        top: number;
-        left: number;
-        width: number;
-        height: number;
-    };
-    static drawPoint(canvas: HTMLCanvasElement, { x, y, r, color }: {
-        x: number;
-        y: number;
+    /**
+     * Get the dimensions of a media element
+     *
+     * @param  {HTMLImageElement|HTMLVideoElement|ImageData} media
+     * @return {{ width: number, height: number }}
+     */
+    static getMediaDimensions(media: HTMLImageElement | HTMLVideoElement | ImageData): IDimensions;
+    /**
+     * Returns TRUE if the media element is loading a resource
+     *
+     * @param  {HTMLImageElement|HTMLVideoElement} media
+     * @return {boolean}
+     */
+    static isMediaLoaded(media: HTMLImageElement | HTMLVideoElement): boolean;
+    /**
+     * Wait for media element resource to load
+     *
+     * @param  {HTMLImageElement|HTMLVideoElement} media
+     * @return {Promise<Event>}
+     */
+    static awaitMediaLoaded(media: HTMLImageElement | HTMLVideoElement): Promise<Event>;
+    /**
+     * Get the coordinates of a rotated rectangle
+     *
+     * @param  {number} x
+     * @param  {number} y
+     * @param  {number} width
+     * @param  {number} height
+     * @param  {number} degree
+     * @return {ICoordinate[]}
+     */
+    static getRotatedRectCoordinates(x: number, y: number, width: number, height: number, degree?: number): ICoordinate[];
+    /**
+     * Get rotation coordinates
+     *
+     * @param  {number} x1
+     * @param  {number} y2
+     * @param  {number} x2
+     * @param  {number} y2
+     * @param  {number} degree
+     * @return {ICoordinate} coordinate Coordinate after rotation
+     */
+    private static getRotationCoordinate;
+    /**
+     * Get the center coordinate of multiple coordinates
+     *
+     * @param  {ICoordinate[]} coordinates
+     * @return {ICoordinate} coordinate Center coordinates
+     */
+    static getCenterCoordinate(...coordinates: ICoordinate[]): ICoordinate;
+    /**
+     * Get the angle of two coordinates
+     *
+     * @param  {number} x1
+     * @param  {number} y1
+     * @param  {number} x2
+     * @param  {number} y2
+     * @return {number}
+     */
+    static getAngleBetweenCoordinates(x1: number, y1: number, x2: number, y2: number): number;
+    /**
+     * Get dimensions and position to fit parent container
+     *
+     * @param  {HTMLElement}                       container
+     * @param  {HTMLImageElement|HTMLVideoElement} media
+     * @param  {string|undefined}                  objectFit
+     * @return {IRect}
+     */
+    static getRectToFitContainer(container: HTMLElement, media: HTMLImageElement | HTMLVideoElement, objectFit?: string | undefined): IRect;
+    /**
+     * Returns the display dimensions and position of the media element
+     *
+     * @param  {HTMLImageElement|HTMLVideoElement} media
+     * @return {IRect} rect Display size and position of media element
+     *          x                 : The horizontal position of the left-top point where the sourceFrame should be cut,
+     *          y                 : The vertical position of the left-top point where the sourceFrame should be cut,
+     *          width             : How much horizontal space of the sourceFrame should be cut,
+     *          height            : How much vertical space of the sourceFrame should be cut,
+     *          destinationX      : The percentage of the horizontal position of the left-top point on the printFrame where the image will be printed, relative to the printFrame width,
+     *          destinationY      : The percentage of the vertical position of the left-top point on the printFrame where the image will be printed, relative to the printFrame height,
+     *          destinationWidth  : The percentage of the printFrame width on which the image will be printed, relative to the printFrame width,
+     *          destinationHeight : The percentage of the printFrame height on which the image will be printed, relative to the printFrame height.
+     */
+    static getRenderedRect(media: HTMLImageElement | HTMLVideoElement): IRect;
+    /**
+     * Draw points
+     *
+     * @param  {HTMLCanvasElement} canvas
+     * @param  {number} x
+     * @param  {number} y
+     * @param  {number} options.r
+     * @param  {string} options.color
+     * @return {void}
+     */
+    static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { r, color }: {
         r?: number;
         color?: string;
     }): void;
-    static drawCenterPoint(canvas: HTMLCanvasElement, { points, r, color }: {
-        points: {
-            x: number;
-            y: number;
-        }[];
+    /**
+     * Draw center point
+     *
+     * @param  {HTMLCanvasElement} canvas
+     * @param  {ICoordinate[]} coordinates
+     * @param  {number} options.r
+     * @param  {string} options.color
+     * @return {void}
+     */
+    static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { r, color }: {
         r?: number;
         color?: string;
     }): void;
-    static drawRect(canvas: HTMLCanvasElement, { x, y, width, height, degree, lineWidth, color }: {
-        x: number;
-        y: number;
-        width: number;
-        height: number;
+    /**
+     * Draw rectangle
+     *
+     * @param  {HTMLCanvasElement} canvas
+     * @param  {number} x
+     * @param  {number} y
+     * @param  {number} width
+     * @param  {number} height
+     * @param  {number} options.degree
+     * @param  {number} options.lineWidth
+     * @param  {string} options.color
+     * @return {void}
+     */
+    static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree, lineWidth, color }: {
         degree?: number;
         lineWidth?: number;
         color?: string;
     }): void;
+    /**
+     * Flip horizontally
+     *
+     * @param {HTMLCanvasElement} canvas
+     * @return {void}
+     */
     static flipHorizontal(canvas: HTMLCanvasElement): void;
-    /**
-     * Get the inherent width of an element
-     *
-     * @param  {HTMLElement} element
-     * @return {number}
-     */
-    static getIntrinsicWidth(element: HTMLElement): number;
-    /**
-     * Get the inherent height of an element
-     *
-     * @param  {HTMLElement} element
-     * @return {number}
-     */
-    static getIntrinsicHeight(element: HTMLElement): number;
-    /**
-     * Get the inherent top of an element
-     *
-     * @param  {HTMLElement} element
-     * @return {number}
-     */
-    static getIntrinsicTop(element: HTMLElement): number;
-    /**
-     * Get the inherent left of an element
-     *
-     * @param  {HTMLElement} element
-     * @return {number}
-     */
-    static getIntrinsicLeft(element: HTMLElement): number;
 }

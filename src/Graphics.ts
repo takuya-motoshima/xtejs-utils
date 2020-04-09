@@ -1,54 +1,154 @@
 import ICoordinate from '~/interfaces/ICoordinate';
 import IRect from '~/interfaces/IRect';
+import IDimensions from '~/interfaces/IDimensions';
 
 export default class {
 
-  public static calculateRotatedRectCoordinates({ x, y, width, height, degree = 0 }: { x: number, y: number, width: number, height: number, degree?: number }): IRect {
-    let topleft;
-    let topright;
-    let bottomright;
-    let bottomleft;
-    if (degree) {
-      const cx = x + width / 2;
-      const cy = y + height / 2;
-      topleft = this.calculateRotationCoordinate({ x, y, cx, cy, degree });
-      topright = this.calculateRotationCoordinate({ x: x + width, y, cx, cy, degree });
-      bottomright = this.calculateRotationCoordinate({ x: x + width, y: y + height, cx, cy, degree });
-      bottomleft = this.calculateRotationCoordinate({ x, y: y + height, cx, cy, degree });
+  /**
+   * Get the dimensions of a media element
+   *
+   * @param  {HTMLImageElement|HTMLVideoElement|ImageData} media
+   * @return {{ width: number, height: number }}
+   */
+  public static getMediaDimensions(media: HTMLImageElement|HTMLVideoElement|ImageData): IDimensions {
+    if (media instanceof HTMLImageElement) {
+      return {
+        width: media.naturalWidth,
+        height: media.naturalHeight
+      };
+    } else if (media instanceof HTMLVideoElement) {
+      return {
+        width: media.videoWidth,
+        height: media.videoHeight
+      };
     } else {
-      topleft = { x, y };
-      topright = { x: x + width, y };
-      bottomright = { x: x + width, y: y + height };
-      bottomleft = { x, y: y + height };
+      return {
+        width: media.width,
+        height: media.height
+      };
     }
-    return { topleft, topright, bottomright, bottomleft };
   }
 
-  private static calculateRotationCoordinate({ x, y, cx = 0, cy = 0, degree = 0 }: { x: number, y: number, cx?: number, cy?: number, degree?: number }): ICoordinate {
+  /**
+   * Returns TRUE if the media element is loading a resource
+   * 
+   * @param  {HTMLImageElement|HTMLVideoElement} media
+   * @return {boolean}
+   */
+  public static isMediaLoaded(media: HTMLImageElement|HTMLVideoElement): boolean {
+    if (media instanceof HTMLImageElement) {
+      return media.complete;
+    } else if (media instanceof HTMLVideoElement) {
+      return media.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA;
+    } else {
+      throw new Error('Invalid argument element');
+    }
+  }
+
+  /**
+   * Wait for media element resource to load
+   * 
+   * @param  {HTMLImageElement|HTMLVideoElement} media
+   * @return {Promise<Event>}
+   */
+  public static awaitMediaLoaded(media: HTMLImageElement|HTMLVideoElement): Promise<Event> {
+    return new Promise((resolve, reject) => {
+      media.addEventListener('load', (event: Event) => {
+        if (!event.currentTarget) {
+          return;
+        }
+        resolve(event)
+      }, { once: true });
+      media.addEventListener('error', (event: Event) => {
+        if (!event.currentTarget) {
+          return
+        }
+        reject(event)
+      }, { once: true });
+    })
+  }
+
+  /**
+   * Get the coordinates of a rotated rectangle
+   * 
+   * @param  {number} x
+   * @param  {number} y
+   * @param  {number} width
+   * @param  {number} height
+   * @param  {number} degree
+   * @return {ICoordinate[]}
+   */
+  public static getRotatedRectCoordinates(x: number, y: number, width: number, height: number, degree: number = 0): ICoordinate[] {
+    let corner1;// Upper left corner
+    let corner2;// Upper right corner
+    let corner3;// Lower right corner
+    let corner4;// Lower left corner
+    if (degree !== 0) {
+      const x2 = x + width / 2;
+      const y2 = y + height / 2;
+      corner1 = this.getRotationCoordinate(x, y, x2, y2, degree);
+      corner2 = this.getRotationCoordinate(x + width, y, x2, y2, degree);
+      corner3 = this.getRotationCoordinate(x + width, y + height, x2, y2, degree);
+      corner4 = this.getRotationCoordinate(x, y + height, x2, y2, degree);
+    } else {
+      corner1 = { x, y };
+      corner2 = { x: x + width, y };
+      corner3 = { x: x + width, y: y + height };
+      corner4 = { x, y: y + height };
+    }
+    return [ corner1, corner2, corner3, corner4 ];
+  }
+
+  /**
+   * Get rotation coordinates
+   * 
+   * @param  {number} x1
+   * @param  {number} y2
+   * @param  {number} x2
+   * @param  {number} y2
+   * @param  {number} degree
+   * @return {ICoordinate} coordinate Coordinate after rotation
+   */
+  private static getRotationCoordinate(x1: number, y1: number, x2: number, y2: number, degree: number): ICoordinate {
     const radian = degree * (Math.PI / 180);
     const sin = Math.sin(radian); 
     const cos = Math.cos(radian);
     return {
-      x: cos * (x - cx) - sin * (y - cy) + cx,
-      y: sin * (x - cx) + cos * (y - cy) + cy
+      x: cos * (x1 - x2) - sin * (y1 - y2) + x2,
+      y: sin * (x1 - x2) + cos * (y1 - y2) + y2
     };
   }
 
-  public static calculateCenterCoordinate(...points: ICoordinate[]): ICoordinate {
-    const sum = points.reduce((sum, { x, y }) => {
-      sum.x += x;
-      sum.y += y;
-      return sum;
+  /**
+   * Get the center coordinate of multiple coordinates
+   * 
+   * @param  {ICoordinate[]} coordinates
+   * @return {ICoordinate} coordinate Center coordinates
+   */
+  public static getCenterCoordinate(...coordinates: ICoordinate[]): ICoordinate {
+    const coordinate = coordinates.reduce((coordinate, { x, y }) => {
+      coordinate.x += x;
+      coordinate.y += y;
+      return coordinate;
     }, {x: 0, y: 0});
-    sum.x /= points.length;
-    sum.y /= points.length;
-    return sum;
+    coordinate.x /= coordinates.length;
+    coordinate.y /= coordinates.length;
+    return coordinate;
   }
 
-  public static calculateAngleBetweenCoordinates(point1: ICoordinate, point2: ICoordinate): number {
-    const radian = Math.atan2(point2.y - point1.y, point2.x - point1.x);
+  /**
+   * Get the angle of two coordinates
+   * 
+   * @param  {number} x1
+   * @param  {number} y1
+   * @param  {number} x2
+   * @param  {number} y2
+   * @return {number}
+   */
+  public static getAngleBetweenCoordinates(x1: number, y1: number, x2: number, y2: number): number {
+    const radian = Math.atan2(y2 - y1, x2 - x1);
     const degree = radian * 180 / Math.PI;
-    // const radian = Math.atan2(point2.x - point1.x, point2.y - point1.y);
+    // const radian = Math.atan2(x2 - x1, y2 - y1);
     // let  degree = radian * 360 / (2 * Math.PI);
     // if (degree < 0) {
     //   degree += 360;
@@ -56,49 +156,158 @@ export default class {
     return degree;
   }
 
-  static calculateFitDimensions(
-    {
-      objectFit,
-      intrinsicWidth,
-      intrinsicHeight,
-      intrinsicTop = 0,
-      intrinsicLeft = 0,
-      actualWidth,
-      actualHeight
-    }:
-    {
-      objectFit: 'contain'|'cover'|'fill'|'inherit'|'initial'|'none'|'scale-down'|'unset',
-      intrinsicWidth: number,
-      intrinsicHeight: number,
-      intrinsicTop?: number,
-      intrinsicLeft?: number,
-      actualWidth: number,
-      actualHeight: number
+  /**
+   * Get dimensions and position to fit parent container
+   * 
+   * @param  {HTMLElement}                       container
+   * @param  {HTMLImageElement|HTMLVideoElement} media
+   * @param  {string|undefined}                  objectFit
+   * @return {IRect}
+   */
+  public static getRectToFitContainer(container: HTMLElement, media: HTMLImageElement|HTMLVideoElement, objectFit: string|undefined = undefined): IRect {
+    const {
+      width: intrinsicWidth,
+      height: intrinsicHeight
+    } = this.getMediaDimensions(media);
+    if (!objectFit) {
+      objectFit = getComputedStyle(media).getPropertyValue('object-fit');
     }
-  ): { top: number, left: number, width: number, height: number } {
-    let top = intrinsicTop;
-    let left = intrinsicLeft;
-    let width = intrinsicWidth;
-    let height = intrinsicHeight;
-    if (objectFit === 'contain' || objectFit === 'cover' || objectFit === 'scale-down') {
-      const horizontalRatio = intrinsicWidth / actualWidth;
-      const verticalRatio = intrinsicHeight / actualHeight;
-      const aspectRatio = objectFit === 'contain' || objectFit === 'scale-down'
+    const visibleStyle = getComputedStyle(container);
+    const visibleWidth =
+      parseFloat(visibleStyle.getPropertyValue('width')) -
+      parseFloat(visibleStyle.getPropertyValue('padding-right')) -
+      parseFloat(visibleStyle.getPropertyValue('border-right-width')) -
+      parseFloat(visibleStyle.getPropertyValue('padding-left')) -
+      parseFloat(visibleStyle.getPropertyValue('border-left-width'));
+    const visibleHeight =
+      parseFloat(visibleStyle.getPropertyValue('height')) -
+      parseFloat(visibleStyle.getPropertyValue('padding-top')) -
+      parseFloat(visibleStyle.getPropertyValue('border-top-width')) -
+      parseFloat(visibleStyle.getPropertyValue('padding-bottom')) -
+      parseFloat(visibleStyle.getPropertyValue('border-bottom-width'));
+    const visibleTop =
+      parseFloat(visibleStyle.getPropertyValue('padding-top')) +
+      parseFloat(visibleStyle.getPropertyValue('border-top-width')) +
+      parseFloat(visibleStyle.getPropertyValue('margin-top'));
+    const visibleLeft =
+      parseFloat(visibleStyle.getPropertyValue('padding-left')) +
+      parseFloat(visibleStyle.getPropertyValue('border-left-width')) +
+      parseFloat(visibleStyle.getPropertyValue('margin-left'));
+
+    if (/^(contain|cover|scale-down)$/.test(objectFit)) {
+      const horizontalRatio = visibleWidth / intrinsicWidth;
+      const verticalRatio = visibleHeight / intrinsicHeight;
+      const ratio = /^(contain|scale-down)$/.test(objectFit) 
         ? Math.min(horizontalRatio, verticalRatio)
         : Math.max(horizontalRatio, verticalRatio);
-      const centerX = ( intrinsicWidth - actualWidth * aspectRatio ) / 2;
-      const centerY = ( intrinsicHeight - actualHeight * aspectRatio ) / 2;
-      top = intrinsicTop + centerY;
-      left = intrinsicLeft + centerX;
-      // top = (intrinsicHeight - height) / 2;
-      // left = (intrinsicWidth - width) / 2;
-      width = actualWidth * aspectRatio;
-      height = actualHeight * aspectRatio;
+      const cx = ( visibleWidth - intrinsicWidth * ratio ) / 2;
+      const cy = ( visibleHeight - intrinsicHeight * ratio ) / 2;
+      return {
+        x: visibleLeft + cx,
+        y: visibleTop + cy,
+        width: intrinsicWidth * ratio,
+        height: intrinsicHeight * ratio
+      };
+    } else {
+      return {
+        x: visibleLeft,
+        y: visibleTop,
+        width: visibleWidth,
+        height: visibleHeight
+      };
     }
-    return { top, left, width, height };
   }
 
-  public static drawPoint(canvas: HTMLCanvasElement, { x, y, r = 3, color = 'aqua' }: { x: number, y: number, r?: number, color?: string }): void {
+  /**
+   * Returns the display dimensions and position of the media element
+   * 
+   * @param  {HTMLImageElement|HTMLVideoElement} media
+   * @return {IRect} rect Display size and position of media element
+   *          x                 : The horizontal position of the left-top point where the sourceFrame should be cut,
+   *          y                 : The vertical position of the left-top point where the sourceFrame should be cut,
+   *          width             : How much horizontal space of the sourceFrame should be cut,
+   *          height            : How much vertical space of the sourceFrame should be cut,
+   *          destinationX      : The percentage of the horizontal position of the left-top point on the printFrame where the image will be printed, relative to the printFrame width,
+   *          destinationY      : The percentage of the vertical position of the left-top point on the printFrame where the image will be printed, relative to the printFrame height,
+   *          destinationWidth  : The percentage of the printFrame width on which the image will be printed, relative to the printFrame width,
+   *          destinationHeight : The percentage of the printFrame height on which the image will be printed, relative to the printFrame height.
+   */
+  public static getRenderedRect(media: HTMLImageElement|HTMLVideoElement): IRect {
+    const objectFit = getComputedStyle(media).getPropertyValue('object-fit');
+    const position = getComputedStyle(media).getPropertyValue('object-position').split(' ');
+    const {
+      width: intrinsicWidth,
+      height: intrinsicHeight
+    } = this.getMediaDimensions(media);
+    const intrinsicRatio = intrinsicWidth / intrinsicHeight;
+    const visibleWidth = media.clientWidth;
+    const visibleHeight = media.clientHeight;
+    const visibleRatio = visibleWidth / visibleHeight;
+    const horizontalPercentage = parseInt(position[0]) / 100;
+    const verticalPercentage = parseInt(position[1]) / 100;
+    let width = 0;
+    let height = 0;
+    let x = 0;
+    let y = 0;
+    let destinationWidth = 1;
+    let destinationHeight = 1;
+    let destinationX = 0;
+    let destinationY = 0;
+    if (objectFit === 'none') {
+      width = visibleWidth;
+      height = visibleHeight;
+      x = (intrinsicWidth - visibleWidth) * horizontalPercentage;
+      y = (intrinsicHeight - visibleHeight) * verticalPercentage;
+    } else if (objectFit === 'contain' || objectFit === 'scale-down') {
+      // TODO: handle the 'scale-down' appropriately, once its meaning will be clear
+      width = intrinsicWidth;
+      height = intrinsicHeight;
+      if (intrinsicRatio > visibleRatio) {
+        destinationHeight = (intrinsicHeight / visibleHeight) / (intrinsicWidth / visibleWidth);
+        destinationY = (1 - destinationHeight) * verticalPercentage;
+      } else {
+        destinationWidth = (intrinsicWidth / visibleWidth) / (intrinsicHeight / visibleHeight);
+        destinationX = (1 - destinationWidth) * horizontalPercentage;
+      }
+    } else if (objectFit === 'cover') {
+      if (intrinsicRatio > visibleRatio) {
+        width = intrinsicHeight * visibleRatio;
+        height = intrinsicHeight;
+        x = (intrinsicWidth - width) * horizontalPercentage;
+      } else {
+        width = intrinsicWidth;
+        height = intrinsicWidth / visibleRatio;
+        y = (intrinsicHeight - height) * verticalPercentage;
+      }
+    } else if (objectFit === 'fill') {
+      width = intrinsicWidth;
+      height = intrinsicHeight;
+    } else {
+      console.error(`Unexpected object-fit attribute with value ${objectFit} relative to`);
+    }
+    return {
+      x,
+      y,
+      width,
+      height,
+      destinationX,
+      destinationY,
+      destinationWidth,
+      destinationHeight
+    };
+  }
+
+  /**
+   * Draw points
+   * 
+   * @param  {HTMLCanvasElement} canvas
+   * @param  {number} x
+   * @param  {number} y
+   * @param  {number} options.r
+   * @param  {string} options.color
+   * @return {void}
+   */
+  public static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { r = 3, color = 'aqua' }: { r?: number, color?: string }): void {
     const context = canvas.getContext('2d')!;
     context.beginPath();
     context.arc(x, y, r, 0, 2 * Math.PI);
@@ -106,103 +315,69 @@ export default class {
     context.fill();
   }
 
-  public static drawCenterPoint(canvas: HTMLCanvasElement, { points, r = 3, color = 'aqua' }: { points: { x: number, y: number }[], r?: number, color?: string }): void {
-    const { x, y } = this.calculateCenterCoordinate(...points);
-    this.drawPoint(canvas, { x, y, r, color });
+  /**
+   * Draw center point
+   * 
+   * @param  {HTMLCanvasElement} canvas
+   * @param  {ICoordinate[]} coordinates
+   * @param  {number} options.r
+   * @param  {string} options.color
+   * @return {void}
+   */
+  public static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { r = 3, color = 'aqua' }: { r?: number, color?: string }): void {
+    const { x, y } = this.getCenterCoordinate(...coordinates);
+    this.drawPoint(canvas, x, y, { r, color });
   }
 
-  public static drawRect(canvas: HTMLCanvasElement, {
-    x,
-    y,
-    width,
-    height,
-    degree = 0,
-    lineWidth = 2,
-    color = 'aqua'
-  }: {
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    degree?: number,
-    lineWidth?: number,
-    color?: string
-  }): void {
-
-    const { topleft, topright, bottomright, bottomleft } = this.calculateRotatedRectCoordinates({ x, y, width, height, degree });
-
+  /**
+   * Draw rectangle
+   * 
+   * @param  {HTMLCanvasElement} canvas
+   * @param  {number} x
+   * @param  {number} y
+   * @param  {number} width
+   * @param  {number} height
+   * @param  {number} options.degree
+   * @param  {number} options.lineWidth
+   * @param  {string} options.color
+   * @return {void}
+   */
+  public static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree = 0, lineWidth = 2, color = 'aqua' }: { degree?: number, lineWidth?: number, color?: string }): void {
+    const corners = this.getRotatedRectCoordinates(x, y, width, height, degree);
     const context = canvas.getContext('2d')!;
     context.beginPath();
-    context.moveTo(topleft.x, topleft.y);
-    context.lineTo(topright.x, topright.y);
-    context.lineTo(bottomright.x, bottomright.y);
-    context.lineTo(bottomleft.x, bottomleft.y);
+    context.moveTo(corners[0].x, corners[0].y);
+    context.lineTo(corners[1].x, corners[1].y);
+    context.lineTo(corners[2].x, corners[2].y);
+    context.lineTo(corners[3].x, corners[3].y);
     context.closePath();
     context.lineWidth = lineWidth;
     context.strokeStyle = color;
     context.stroke();
   }
 
+  /**
+   * Flip horizontally
+   * 
+   * @param {HTMLCanvasElement} canvas
+   * @return {void}
+   */
   public static flipHorizontal(canvas: HTMLCanvasElement): void {
     const context = canvas.getContext('2d')!;
-    const imageData = context.getImageData(0,0, canvas.width, canvas.height);
+    const data = context.getImageData(0,0, canvas.width, canvas.height);
     // Traverse every row and flip the pixels
-    for (let i=0; i<imageData.height; i++) {
+    for (let i=0; i<data.height; i++) {
      // We only need to do half of every row since we're flipping the halves
-      for (let j=0; j<imageData.width/2; j++) {
-        const index = (i * 4) * imageData.width + (j * 4);
-        const mirrorIndex = ((i + 1) * 4) * imageData.width - ((j + 1) * 4);
+      for (let j=0; j<data.width/2; j++) {
+        const index = (i * 4) * data.width + (j * 4);
+        const mirrorIndex = ((i + 1) * 4) * data.width - ((j + 1) * 4);
         for (let k=0; k<4; k++) {
-          let temp = imageData.data[index + k];
-          imageData.data[index + k] = imageData.data[mirrorIndex + k];
-          imageData.data[mirrorIndex + k] = temp;
+          let temp = data.data[index + k];
+          data.data[index + k] = data.data[mirrorIndex + k];
+          data.data[mirrorIndex + k] = temp;
         }
       }
     }
-    context.putImageData(imageData, 0, 0, 0, 0, imageData.width, imageData.height);
-  }
-
-  /**
-   * Get the inherent width of an element
-   * 
-   * @param  {HTMLElement} element
-   * @return {number}
-   */
-  public static getIntrinsicWidth(element: HTMLElement): number {
-    const styles = getComputedStyle(element);
-    return parseFloat(styles.width) - parseFloat(styles.paddingRight) - parseFloat(styles.borderRightWidth) - parseFloat(styles.paddingLeft) - parseFloat(styles.borderLeftWidth);
-  }
-
-  /**
-   * Get the inherent height of an element
-   * 
-   * @param  {HTMLElement} element
-   * @return {number}
-   */
-  public static getIntrinsicHeight(element: HTMLElement): number {
-    const styles = getComputedStyle(element);
-    return parseFloat(styles.height) - parseFloat(styles.paddingTop) - parseFloat(styles.borderTopWidth) - parseFloat(styles.paddingBottom) - parseFloat(styles.borderBottomWidth);
-  }
-
-  /**
-   * Get the inherent top of an element
-   * 
-   * @param  {HTMLElement} element
-   * @return {number}
-   */
-  public static getIntrinsicTop(element: HTMLElement): number {
-    const styles = getComputedStyle(element);
-    return parseFloat(styles.paddingTop) + parseFloat(styles.borderTopWidth) + parseFloat(styles.marginTop);
-  }
-
-  /**
-   * Get the inherent left of an element
-   * 
-   * @param  {HTMLElement} element
-   * @return {number}
-   */
-  public static getIntrinsicLeft(element: HTMLElement): number {
-    const styles = getComputedStyle(element);
-    return parseFloat(styles.paddingLeft) + parseFloat(styles.borderLeftWidth) + parseFloat(styles.marginLeft);
+    context.putImageData(data, 0, 0, 0, 0, data.width, data.height);
   }
 }
