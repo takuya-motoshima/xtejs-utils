@@ -307,7 +307,7 @@ export default class {
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { r = 3, color = 'aqua' }: { r?: number, color?: string }): void {
+  public static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { r = 3, color = 'aqua' }: { r?: number, color?: string } = {}): void {
     const context = canvas.getContext('2d')!;
     context.beginPath();
     context.arc(x, y, r, 0, 2 * Math.PI);
@@ -324,7 +324,7 @@ export default class {
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { r = 3, color = 'aqua' }: { r?: number, color?: string }): void {
+  public static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { r = 3, color = 'aqua' }: { r?: number, color?: string } = {}): void {
     const { x, y } = this.getCenterCoordinate(...coordinates);
     this.drawPoint(canvas, x, y, { r, color });
   }
@@ -342,7 +342,7 @@ export default class {
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree = 0, lineWidth = 2, color = 'aqua' }: { degree?: number, lineWidth?: number, color?: string }): void {
+  public static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree = 0, lineWidth = 2, color = 'aqua' }: { degree?: number, lineWidth?: number, color?: string } = {}): void {
     const corners = this.getRotatedRectCoordinates(x, y, width, height, degree);
     const context = canvas.getContext('2d')!;
     context.beginPath();

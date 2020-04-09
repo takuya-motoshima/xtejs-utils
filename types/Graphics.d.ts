@@ -96,7 +96,7 @@ export default class {
      * @param  {string} options.color
      * @return {void}
      */
-    static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { r, color }: {
+    static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { r, color }?: {
         r?: number;
         color?: string;
     }): void;
@@ -109,7 +109,7 @@ export default class {
      * @param  {string} options.color
      * @return {void}
      */
-    static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { r, color }: {
+    static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { r, color }?: {
         r?: number;
         color?: string;
     }): void;
@@ -126,7 +126,7 @@ export default class {
      * @param  {string} options.color
      * @return {void}
      */
-    static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree, lineWidth, color }: {
+    static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree, lineWidth, color }?: {
         degree?: number;
         lineWidth?: number;
         color?: string;
