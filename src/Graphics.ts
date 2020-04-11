@@ -161,17 +161,14 @@ export default class {
    * 
    * @param  {HTMLElement}                       container
    * @param  {HTMLImageElement|HTMLVideoElement} media
-   * @param  {string|undefined}                  objectFit
    * @return {IRect}
    */
-  public static getRectToFitContainer(container: HTMLElement, media: HTMLImageElement|HTMLVideoElement, objectFit: string|undefined = undefined): IRect {
+  public static getRectToFitContainer(container: HTMLElement, media: HTMLImageElement|HTMLVideoElement): IRect {
     const {
       width: intrinsicWidth,
       height: intrinsicHeight
     } = this.getMediaDimensions(media);
-    if (!objectFit) {
-      objectFit = getComputedStyle(media).getPropertyValue('object-fit');
-    }
+    const objectFit = getComputedStyle(media).getPropertyValue('object-fit');
     const visibleStyle = getComputedStyle(container);
     const visibleWidth =
       parseFloat(visibleStyle.getPropertyValue('width')) -
