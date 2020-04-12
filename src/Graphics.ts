@@ -368,7 +368,7 @@ export default class {
    */
   public static drawRectangleCorners(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { lineWidth = 2, color = Color.accessibleDarkBlue }: { lineWidth?: number, color?: string } = {}): void {
     const context = canvas.getContext('2d')!;
-    const cornerWidth = Math.min(width - x, height - y) / 2;
+    const cornerWidth = Math.min(width, height) / 4;
 
     // Draw upper left corner
     context.moveTo(x, y + cornerWidth);
