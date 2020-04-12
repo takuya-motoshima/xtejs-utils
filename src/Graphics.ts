@@ -353,7 +353,7 @@ export default class {
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree = 0, lineWidth = 2, color = Color.accessibleDarkBlue }: { degree?: number, lineWidth?: number, color?: string } = {}): void {
+  public static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree = 0, lineWidth = 3, color = Color.accessibleDarkBlue }: { degree?: number, lineWidth?: number, color?: string } = {}): void {
     const corners = this.getRotatedRectCoordinates(x, y, width, height, degree);
     const context = canvas.getContext('2d')!;
     context.beginPath();
@@ -379,7 +379,7 @@ export default class {
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawRectangleCorners(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { lineWidth = 2, color = Color.accessibleDarkBlue }: { lineWidth?: number, color?: string } = {}): void {
+  public static drawRectangleCorners(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { lineWidth = 3, color = Color.accessibleDarkBlue }: { lineWidth?: number, color?: string } = {}): void {
     const context = canvas.getContext('2d')!;
     const cornerWidth = Math.min(width, height) / 4;
 
