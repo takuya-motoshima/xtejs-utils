@@ -3,7 +3,7 @@ import IRect from '~/interfaces/IRect';
 import IDimensions from '~/interfaces/IDimensions';
 export default class {
     /**
-     * Get the dimensions of a media element
+     * Returns the intrinsic dimensions of the media element
      *
      * @param  {HTMLImageElement|HTMLVideoElement|ImageData} media
      * @return {{ width: number, height: number }}
@@ -16,6 +16,13 @@ export default class {
      * @return {boolean}
      */
     static isMediaLoaded(media: HTMLImageElement | HTMLVideoElement): boolean;
+    /**
+     * Returns dimensions without borders and padding
+     *
+     * @param  {HTMLImageElement|HTMLVideoElement} media
+     * @return {{ width: number, height: number }}
+     */
+    static getInnerDimensions(media: HTMLImageElement | HTMLVideoElement): IDimensions;
     /**
      * Wait for media element resource to load
      *

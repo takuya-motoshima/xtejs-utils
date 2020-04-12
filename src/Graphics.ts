@@ -6,7 +6,7 @@ import Color from '~/Color';
 export default class {
 
   /**
-   * Get the dimensions of a media element
+   * Returns the intrinsic dimensions of the media element
    *
    * @param  {HTMLImageElement|HTMLVideoElement|ImageData} media
    * @return {{ width: number, height: number }}
@@ -44,6 +44,19 @@ export default class {
     } else {
       throw new Error('Invalid argument element');
     }
+  }
+
+  /**
+   * Returns dimensions without borders and padding
+   *
+   * @param  {HTMLImageElement|HTMLVideoElement} media
+   * @return {{ width: number, height: number }}
+   */
+  public static getInnerDimensions(media: HTMLImageElement|HTMLVideoElement): IDimensions {
+    const style = getComputedStyle(media);
+    const width = media.clientWidth - ( parseFloat(style.getPropertyValue('padding-left')) + parseFloat(style.getPropertyValue('padding-right')));
+    const height = media.clientHeight - ( parseFloat(style.getPropertyValue('padding-top')) + parseFloat(style.getPropertyValue('padding-bottom')));
+    return { width, height }
   }
 
   /**
