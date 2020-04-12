@@ -7,6 +7,7 @@ import Datetime from '~/Datetime';
 import Random from '~/Random';
 import Collection from '~/Collection';
 import Template from '~/Template';
+import Color from '~/Color';
 
 export {
   version,
@@ -17,5 +18,6 @@ export {
   Datetime,
   Random,
   Collection,
-  Template
+  Template,
+  Color
 }

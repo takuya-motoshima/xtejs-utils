@@ -1,6 +1,7 @@
 import ICoordinate from '~/interfaces/ICoordinate';
 import IRect from '~/interfaces/IRect';
 import IDimensions from '~/interfaces/IDimensions';
+import Color from '~/Color';
 
 export default class {
 
@@ -300,14 +301,14 @@ export default class {
    * @param  {HTMLCanvasElement} canvas
    * @param  {number} x
    * @param  {number} y
-   * @param  {number} options.r
+   * @param  {number} options.radius
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { r = 3, color = 'aqua' }: { r?: number, color?: string } = {}): void {
+  public static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { radius = 3, color = Color.accessibleDarkBlue }: { radius?: number, color?: string } = {}): void {
     const context = canvas.getContext('2d')!;
     context.beginPath();
-    context.arc(x, y, r, 0, 2 * Math.PI);
+    context.arc(x, y, radius, 0, 2 * Math.PI);
     context.fillStyle = color;
     context.fill();
   }
@@ -317,13 +318,13 @@ export default class {
    * 
    * @param  {HTMLCanvasElement} canvas
    * @param  {ICoordinate[]} coordinates
-   * @param  {number} options.r
+   * @param  {number} options.radius
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { r = 3, color = 'aqua' }: { r?: number, color?: string } = {}): void {
+  public static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { radius = 3, color = Color.accessibleDarkBlue }: { radius?: number, color?: string } = {}): void {
     const { x, y } = this.getCenterCoordinate(...coordinates);
-    this.drawPoint(canvas, x, y, { r, color });
+    this.drawPoint(canvas, x, y, { radius, color });
   }
 
   /**
@@ -339,7 +340,7 @@ export default class {
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree = 0, lineWidth = 2, color = 'aqua' }: { degree?: number, lineWidth?: number, color?: string } = {}): void {
+  public static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree = 0, lineWidth = 2, color = Color.accessibleDarkBlue }: { degree?: number, lineWidth?: number, color?: string } = {}): void {
     const corners = this.getRotatedRectCoordinates(x, y, width, height, degree);
     const context = canvas.getContext('2d')!;
     context.beginPath();
@@ -348,6 +349,48 @@ export default class {
     context.lineTo(corners[2].x, corners[2].y);
     context.lineTo(corners[3].x, corners[3].y);
     context.closePath();
+    context.lineWidth = lineWidth;
+    context.strokeStyle = color;
+    context.stroke();
+  }
+
+  /**
+   * Draw rectangle corners
+   * 
+   * @param  {HTMLCanvasElement} canvas
+   * @param  {number} x
+   * @param  {number} y
+   * @param  {number} width
+   * @param  {number} height
+   * @param  {number} options.lineWidth
+   * @param  {string} options.color
+   * @return {void}
+   */
+  public static drawRectangleCorners(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { lineWidth = 2, color = Color.accessibleDarkBlue }: { lineWidth?: number, color?: string } = {}): void {
+    const context = canvas.getContext('2d')!;
+    const cornerWidth = Math.min(width - x, height - y) / 2;
+
+    // Draw upper left corner
+    context.moveTo(x, y + cornerWidth);
+    context.lineTo(x, y);
+    context.lineTo(x + cornerWidth, y);
+
+    // Draw upper right corner
+    context.moveTo(x + width - cornerWidth, y);
+    context.lineTo(x + width, y);
+    context.lineTo(x + width , y + cornerWidth);
+
+    // Draw lower left corner
+    context.moveTo(x, y + height - cornerWidth);
+    context.lineTo(x, y + height);
+    context.lineTo(x + cornerWidth, y + height);
+
+    // Draw lower right corner
+    context.moveTo(x + width - cornerWidth, y + height);
+    context.lineTo(x + width, y + height);
+    context.lineTo(x + width, y + height - cornerWidth);
+
+    // Draw rectangle corner line
     context.lineWidth = lineWidth;
     context.strokeStyle = color;
     context.stroke();

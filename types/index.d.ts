@@ -7,4 +7,5 @@ import Datetime from '~/Datetime';
 import Random from '~/Random';
 import Collection from '~/Collection';
 import Template from '~/Template';
-export { version, Misc, Graphics, Types, Browser, Datetime, Random, Collection, Template };
+import Color from '~/Color';
+export { version, Misc, Graphics, Types, Browser, Datetime, Random, Collection, Template, Color };

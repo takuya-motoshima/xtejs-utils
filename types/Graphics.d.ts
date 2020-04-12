@@ -91,12 +91,12 @@ export default class {
      * @param  {HTMLCanvasElement} canvas
      * @param  {number} x
      * @param  {number} y
-     * @param  {number} options.r
+     * @param  {number} options.radius
      * @param  {string} options.color
      * @return {void}
      */
-    static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { r, color }?: {
-        r?: number;
+    static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { radius, color }?: {
+        radius?: number;
         color?: string;
     }): void;
     /**
@@ -104,12 +104,12 @@ export default class {
      *
      * @param  {HTMLCanvasElement} canvas
      * @param  {ICoordinate[]} coordinates
-     * @param  {number} options.r
+     * @param  {number} options.radius
      * @param  {string} options.color
      * @return {void}
      */
-    static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { r, color }?: {
-        r?: number;
+    static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { radius, color }?: {
+        radius?: number;
         color?: string;
     }): void;
     /**
@@ -127,6 +127,22 @@ export default class {
      */
     static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree, lineWidth, color }?: {
         degree?: number;
+        lineWidth?: number;
+        color?: string;
+    }): void;
+    /**
+     * Draw rectangle corners
+     *
+     * @param  {HTMLCanvasElement} canvas
+     * @param  {number} x
+     * @param  {number} y
+     * @param  {number} width
+     * @param  {number} height
+     * @param  {number} options.lineWidth
+     * @param  {string} options.color
+     * @return {void}
+     */
+    static drawRectangleCorners(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { lineWidth, color }?: {
         lineWidth?: number;
         color?: string;
     }): void;
