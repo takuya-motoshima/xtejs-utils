@@ -8,6 +8,9 @@ import Random from '~/Random';
 import Collection from '~/Collection';
 import Template from '~/Template';
 import Color from '~/Color';
+import IDimensions from '~/interfaces/IDimensions';
+import ICoordinate from '~/interfaces/ICoordinate';
+import IRect from '~/interfaces/IRect';
 
 export {
   version,
@@ -19,5 +22,8 @@ export {
   Random,
   Collection,
   Template,
-  Color
+  Color,
+  IDimensions,
+  ICoordinate,
+  IRect
 }
