@@ -67,10 +67,9 @@ export default class {
      *
      * @param  {HTMLElement}                       container
      * @param  {HTMLImageElement|HTMLVideoElement} media
-     * @param  {string|undefined}                  objectFit
      * @return {IRect}
      */
-    static getRectToFitContainer(container: HTMLElement, media: HTMLImageElement | HTMLVideoElement, objectFit?: string | undefined): IRect;
+    static getRectToFitContainer(container: HTMLElement, media: HTMLImageElement | HTMLVideoElement): IRect;
     /**
      * Returns the display dimensions and position of the media element
      *
