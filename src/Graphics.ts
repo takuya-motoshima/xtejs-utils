@@ -397,6 +397,16 @@ export default class {
   }
 
   /**
+   * Clear canvas
+   * 
+   * @return {void}
+   */
+  public static clearCanvas(canvas: HTMLCanvasElement): void {
+    const context = canvas.getContext('2d')!;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  /**
    * Flip horizontally
    * 
    * @param {HTMLCanvasElement} canvas

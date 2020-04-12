@@ -147,6 +147,12 @@ export default class {
         color?: string;
     }): void;
     /**
+     * Clear canvas
+     *
+     * @return {void}
+     */
+    static clearCanvas(canvas: HTMLCanvasElement): void;
+    /**
      * Flip horizontally
      *
      * @param {HTMLCanvasElement} canvas
