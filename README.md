@@ -10,7 +10,7 @@ npm install xtejs-utils;
 
 ## Usage
 
-### Browser detector
+### Browser detector.
 
 ```js
 import * as XtejsUtils from "xtejs-utils";
@@ -62,7 +62,7 @@ browser.getEngineName();
 // Blink
 ```
 
-### Collection controller
+### Collection utility.
 
 ```js
 import * as XtejsUtils from "xtejs-utils";
@@ -77,23 +77,23 @@ XtejsUtils.Collection.unique();
 // ]
 ```
 
-### Color
+### System Colors.
 This will be explained later
 
-### Datetime
+### Date utility.
 This will be explained later
 
-### Graphics
+### Graphic utility.
 This will be explained later
 
-### Misc
+### Miscellaneous utility.
 This will be explained later
 
-### Random
+### Random utility.
 This will be explained later
 
-### Template
+### Template engine.
 This will be explained later
 
-### Types
+### Type utility.
 This will be explained later

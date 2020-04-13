@@ -1,3 +1,6 @@
+/**
+ * Type utility.
+ */
 export default class {
 
   public static isAsync(value: Function): boolean {

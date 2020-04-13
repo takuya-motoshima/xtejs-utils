@@ -1,3 +1,6 @@
+/**
+ * Date utility.
+ */
 import moment from 'moment';
 
 export default class {

@@ -1,3 +1,8 @@
+/**
+ * Template engine.
+ * 
+ * A template language that can generate HTML markup with JS.
+ */
 import Handlebars from 'handlebars';
 
 /**

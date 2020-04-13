@@ -1,3 +1,6 @@
+/**
+ * Graphic utility.
+ */
 import ICoordinate from '~/interfaces/ICoordinate';
 import IRect from '~/interfaces/IRect';
 import IDimensions from '~/interfaces/IDimensions';

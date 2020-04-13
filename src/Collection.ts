@@ -1,5 +1,5 @@
 /**
- * Collection controller
+ * Collection utility.
  */
 export default class {
 
