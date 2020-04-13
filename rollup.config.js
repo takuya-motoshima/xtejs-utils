@@ -3,7 +3,6 @@ import { terser } from "rollup-plugin-terser";
 import json from 'rollup-plugin-json';
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve';
-import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
 import alias from '@rollup/plugin-alias';
 import replace from '@rollup/plugin-replace';
 import pkg from './package.json';
@@ -35,10 +34,6 @@ export default {
     commonjs(),
     resolve({
       mainFields: ['module', 'main']
-    }),
-    obfuscatorPlugin({
-      compact: true,
-      sourceMap: false
     })
   ],
   output: [

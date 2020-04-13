@@ -1,21 +1,33 @@
 export default class {
     /**
-     * Getting a random integer between two values, inclusive
+     * Returns one randomly between two specified numbers
      *
-     * @param  {number} min
-     * @param  {number} max
+     * @example
+     * import { Random } from 'xtejs-utils';
+     *
+     * // Returns a number from 3 to 9
+     * Random.randInt(3, 9);
+     *
+     * @param  {number} start
+     * @param  {number} stop
      * @return {number}
      */
-    static randInt(min: number, max: number): number;
+    static randInt(start: number, stop: number): number;
     /**
-     * Gets a random element from collection.
+     * Randomly return one element from an array
+     *
+     * @example
+     * import { Random } from 'xtejs-utils';
+     *
+     * // Get 1 element randomly from 3 elements
+     * Random.sample(['apple', 'banana', 'cherry']);
      *
      * @param  {any[]} collection
      * @return {any}
      */
     static sample(collection: any[]): any;
     /**
-     * Get random HSL (hue, saturation, lightness)
+     * Returns HSL color (hue, saturation, lightness) at random
      *
      * @example
      * import { Random } from 'xtejs-utils';

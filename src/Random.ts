@@ -6,20 +6,32 @@ import moment from 'moment';
 export default class {
 
   /**
-   * Getting a random integer between two values, inclusive
+   * Returns one randomly between two specified numbers
    * 
-   * @param  {number} min
-   * @param  {number} max
+   * @example
+   * import { Random } from 'xtejs-utils';
+   * 
+   * // Returns a number from 3 to 9
+   * Random.randInt(3, 9);
+   *
+   * @param  {number} start
+   * @param  {number} stop
    * @return {number}
    */
-  public static randInt(min: number, max: number): number {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  public static randInt(start: number, stop: number): number {
+    start = Math.ceil(start);
+    stop = Math.floor(stop);
+    return Math.floor(Math.random() * (stop - start + 1)) + start;
   }
 
   /**
-   * Gets a random element from collection.
+   * Randomly return one element from an array
+   * 
+   * @example
+   * import { Random } from 'xtejs-utils';
+   * 
+   * // Get 1 element randomly from 3 elements
+   * Random.sample(['apple', 'banana', 'cherry']);
    * 
    * @param  {any[]} collection
    * @return {any}
@@ -29,7 +41,7 @@ export default class {
   }
 
   /**
-   * Get random HSL (hue, saturation, lightness)
+   * Returns HSL color (hue, saturation, lightness) at random
    * 
    * @example
    * import { Random } from 'xtejs-utils';
