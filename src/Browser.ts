@@ -21,7 +21,7 @@ export default class {
    * 
    * @return {IBrowserParsedResult}
    */
-  public getResults(): IBrowserParsedResult {
+  public getParseResults(): IBrowserParsedResult {
     return this.parser.getResult();
   }
 

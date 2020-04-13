@@ -11,7 +11,7 @@ export default class {
      *
      * @return {IBrowserParsedResult}
      */
-    getResults(): IBrowserParsedResult;
+    getParseResults(): IBrowserParsedResult;
     /**
      * Get browser's name
      *

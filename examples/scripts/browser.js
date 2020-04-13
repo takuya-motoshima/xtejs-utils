@@ -3,7 +3,7 @@ import * as XtejsUtils from '../../dist/build.esm.js';
 const browser = new XtejsUtils.Browser(navigator.userAgent);
 
 // All browser parsed results
-$('#results').text(JSON.stringify(browser.getResults(), null, '  '));
+$('#results').text(JSON.stringify(browser.getParseResults(), null, '  '));
 
 // Browser's name
 $('#browserName').text(browser.getBrowserName());

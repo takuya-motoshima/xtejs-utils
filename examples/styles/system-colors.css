@@ -1,0 +1,26 @@
+.color {
+  margin-left: 6px;
+  margin-right: 6px;
+  height: 75px;
+  width: 75px;
+  border-radius: 10px;
+  padding: 0.8em 1em;
+}
+
+  .color span {
+    display: block;
+    color: #FFF;
+    line-height: 1.2;
+    font-size: 14px;
+    white-space: nowrap;
+    font-family: -apple-system, "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+  }
+
+  .color + span {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: .8rem;
+    color: #adb5bd;
+    text-align: center;
+    display: block;
+  }
