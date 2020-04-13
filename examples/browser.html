@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XteJS utils | Browser detector example</title>
+  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/shared.css?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->">
+  <link rel="stylesheet" type="text/css" href="styles/browser.css?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->">
+</head>
+<body>
+
+  <main class="container-fluid mt-3">
+
+    <h3>All browser parsed results</h3>
+
+    <div class="example">
+      <pre id="results"></pre>
+    </div>
+
+    <h3>Browser's name</h3>
+
+    <div class="example">
+      <pre id="browserName"></pre>
+    </div>
+
+    <h3>Browser's version</h3>
+
+    <div class="example">
+      <pre id="browserVersion"></pre>
+    </div>
+
+    <h3>OS name</h3>
+
+    <div class="example">
+      <pre id="osName"></pre>
+    </div>
+
+    <h3>OS version</h3>
+
+    <div class="example">
+      <pre id="osVersion"></pre>
+    </div>
+
+    <h3>Platform name</h3>
+
+    <div class="example">
+      <pre id="platformType"></pre>
+    </div>
+
+    <h3>Engines's name</h3>
+
+    <div class="example">
+      <pre id="engineName"></pre>
+    </div>
+
+  </main>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="module" src="scripts/browser.js?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->"></script>
+</body>
+</html>

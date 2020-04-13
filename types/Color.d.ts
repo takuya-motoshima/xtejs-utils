@@ -1,0 +1,72 @@
+declare const _default: {
+    blue: string;
+    brown: string;
+    gray: string;
+    gray2: string;
+    gray3: string;
+    gray4: string;
+    gray5: string;
+    gray6: string;
+    green: string;
+    indigo: string;
+    orange: string;
+    pink: string;
+    purple: string;
+    red: string;
+    teal: string;
+    yellow: string;
+    darkBlue: string;
+    darkBrown: string;
+    darkGray: string;
+    darkGray2: string;
+    darkGray3: string;
+    darkGray4: string;
+    darkGray5: string;
+    darkGray6: string;
+    darkGreen: string;
+    darkIndigo: string;
+    darkOrange: string;
+    darkPink: string;
+    darkPurple: string;
+    darkRed: string;
+    darkTeal: string;
+    darkYellow: string;
+    accessibleBlue: string;
+    accessibleBrown: string;
+    accessibleGray: string;
+    accessibleGray2: string;
+    accessibleGray3: string;
+    accessibleGray4: string;
+    accessibleGray5: string;
+    accessibleGray6: string;
+    accessibleGreen: string;
+    accessibleIndigo: string;
+    accessibleOrange: string;
+    accessiblePink: string;
+    accessiblePurple: string;
+    accessibleRed: string;
+    accessibleTeal: string;
+    accessibleYellow: string;
+    accessibleDarkBlue: string;
+    accessibleDarkBrown: string;
+    accessibleDarkGray: string;
+    accessibleDarkGray2: string;
+    accessibleDarkGray3: string;
+    accessibleDarkGray4: string;
+    accessibleDarkGray5: string;
+    accessibleDarkGray6: string;
+    accessibleDarkGreen: string;
+    accessibleDarkIndigo: string;
+    accessibleDarkOrange: string;
+    accessibleDarkPink: string;
+    accessibleDarkPurple: string;
+    accessibleDarkRed: string;
+    accessibleDarkTeal: string;
+    accessibleDarkYellow: string;
+};
+/**
+ * Colors
+ *
+ * The following color values ​​are various colors that adapt to changing accessibility settings.
+ */
+export default _default;
