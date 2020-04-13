@@ -1,3 +1,6 @@
+/**
+ * Collection controller
+ */
 export default class {
 
   /**

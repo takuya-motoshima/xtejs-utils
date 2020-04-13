@@ -1,4 +1,4 @@
-import { Graphics } from '../../dist/build.esm.js';
+import * as XtejsUtils from '../../dist/build.esm.js';
 
 function setupSampleImageActions() {
   const $imageList = $('#imageList');
@@ -37,10 +37,10 @@ function setupControllers() {
 }
 
 function updateResultImage() {
-  const rect = Graphics.getRectToFitContainer(
+  const rect = XtejsUtils.Graphics.getRectToFitContainer(
     $sampleImage.parent().get(0),
     $sampleImage.get(0));
-  const dimensions = Graphics.getMediaDimensions($sampleImage.get(0));
+  const dimensions = XtejsUtils.Graphics.getMediaDimensions($sampleImage.get(0));
   $resultImage
     .attr({ width: dimensions.width, height: dimensions.height })
     .css({ left: rect.x, top: rect.y, width: rect.width, height: rect.height });

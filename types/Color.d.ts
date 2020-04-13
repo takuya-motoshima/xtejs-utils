@@ -65,6 +65,8 @@ declare const _default: {
     accessibleDarkYellow: string;
 };
 /**
- * Object that stores color data
+ * Colors
+ *
+ * The following color values ​​are various colors that adapt to changing accessibility settings.
  */
 export default _default;

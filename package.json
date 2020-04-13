@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "bowser": "^2.9.0",
     "handlebars": "^4.7.3",
     "moment": "^2.24.0"
   }

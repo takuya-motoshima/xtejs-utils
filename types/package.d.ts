@@ -48,6 +48,7 @@ export declare var devDependencies: {
 };
 export declare var dependencies: {
     bootstrap: string;
+    bowser: string;
     handlebars: string;
     moment: string;
 };
