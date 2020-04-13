@@ -65,7 +65,7 @@ declare const _default: {
     accessibleDarkYellow: string;
 };
 /**
- * Colors
+ * System Colors.
  *
  * The following color values ​​are various colors that adapt to changing accessibility settings.
  */

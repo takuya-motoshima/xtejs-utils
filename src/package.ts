@@ -1,6 +1,6 @@
 export var name = "xtejs-utils";
 export var version = "1.0.0";
-export var description = "JS extension utils libraies";
+export var description = "This package is a general utility class and function package.";
 export var main = "dist/build.common.js";
 export var module = "dist/build.esm.js";
 export var browser = "dist/build.js";

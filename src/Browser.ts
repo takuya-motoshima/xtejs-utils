@@ -1,5 +1,5 @@
 /**
- * Browser detector
+ * Browser detector.
  */
 import Bowser from 'bowser';
 import IBrowserParsedResult from '~/interfaces/IBrowserParsedResult';
