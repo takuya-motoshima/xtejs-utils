@@ -4,7 +4,7 @@
 
 **XteJS utils** is a general utility class and function package.
 
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- Code required for line break in README header -->
+### &nbsp;<!-- Code required for line break in README header -->
 
 ## Installation
 
@@ -22,7 +22,7 @@ import * as XtejsUtils from "xtejs-utils";
 const browser = new XtejsUtils.Browser(navigator.userAgent);
 
 // All browser parsed results
-browser.getResults();
+browser.getParseResults();
 // {
 //   "browser": {
 //     "name": "Chrome",
