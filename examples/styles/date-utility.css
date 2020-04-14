@@ -1,0 +1,4 @@
+.date-formatted-list td[data-format]::after {
+  display: inline;
+  content: attr(data-format);
+}
