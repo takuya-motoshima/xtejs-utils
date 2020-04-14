@@ -224,4 +224,30 @@ export default class {
   public static add(date: string, step: number, unit: 'years'|'months'|'weeks'|'days'|'hours'|'minutes'|'seconds', format = 'YYYY-MM-DDTHH:mm:ssZ'): string {
     return moment(date).add(step, unit).format(format);
   }
+
+  /**
+   * Check if date is invalid
+   *
+   * @example
+   * import { Datetime } from 'xtejs-utils';
+   * 
+   * Datetime.isValid('2012-05-25', 'YYYY-MM-DD', true); // true
+   * Datetime.isValid('2012.05.25', 'YYYY-MM-DD', true); // false
+   * Datetime.isValid('not a real date'); // false
+   * Datetime.isValid('2010 13', 'YYYY MM'); // false (not a real month)
+   * Datetime.isValid('2010 11 31', 'YYYY MM DD'); // false (not a real day)
+   * Datetime.isValid('2010 2 29', 'YYYY MM DD'); // false (not a leap year)
+   * Datetime.isValid('2010 notamonth 29', 'YYYY MMM DD'); // false (not a real month name)
+   * 
+   * @param  {string}           date
+   * @param  {string|undefined} format
+   * @return {boolean}
+   */
+  public static isValid(date: string, format: string|undefined = undefined): boolean {
+    if (format !== undefined) {
+      return moment(date, format, true).isValid();
+    } else {
+      return moment(date).isValid();
+    }
+  }
 }
