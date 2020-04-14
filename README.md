@@ -75,7 +75,7 @@ XtejsUtils.Collection.unique();
 
 The following color values ​​are various colors that adapt to changing accessibility settings.
 
-![System color list](https://raw.githubusercontent.com/takuya-motoshima/xtejs-utils/master/device-look/documents/system-color-list.png)
+![System color list](https://raw.githubusercontent.com/takuya-motoshima/xtejs-utils/master/documents/system-color-list.png)
 
 ```js
 import * as XtejsUtils from "xtejs-utils";
