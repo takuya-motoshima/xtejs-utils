@@ -1,6 +1,10 @@
 # xtejs-utils
 
-This package is a general utility class and function package.
+<img src="https://raw.githubusercontent.com/takuya-motoshima/xtejs-utils/master/documents/brand.png" width="58" height="90" align="left" hspace="10" vspace="6">
+
+**XteJS utils** is a general utility class and function package.
+
+### &nbsp;<!-- Code required for line break in README header -->
 
 ## Installation
 
@@ -249,7 +253,7 @@ source = `
   {{else}}
     <h1>Unknown Author</h1>
   {{/if}}`;
-  
+
 template = XtejsUtils.Template.compile(source);
 
 template({ author: true, firstName: 'Yehuda', lastName: 'Katz' });
@@ -262,7 +266,7 @@ template({ author: false, firstName: 'Yehuda', lastName: 'Katz' });
 source = `
   raw: {{{specialChars}}}
   html-escaped: {{specialChars}}`;
-  
+
 XtejsUtils.Template.compile(source)({ specialChars: "& < > \" ' ` =" });
 // Would render:
 // raw: & < > " ' ` =
@@ -282,7 +286,7 @@ let source = `
       <li>{{name}} is {{age}}</li>
     {{/kids}}
   </ul>`;
-  
+
 XtejsUtils.Template.render(source, { name: 'Beil', hometown: 'New York', kids: [ { name: 'Jollye', age: '20' } ]});
 // Would render:
 // <p>Hello, my name is Beil.I am from New York.I have 1 kids:</p>
@@ -297,7 +301,7 @@ source = `
   {{else}}
     <h1>Unknown Author</h1>
   {{/if}}`;
-  
+
 XtejsUtils.Template.render(source, { author: true, firstName: 'Yehuda', lastName: 'Katz' });
 // Would render: <h1>Yehuda Katz</h1>
 
@@ -308,7 +312,7 @@ XtejsUtils.Template.render(source, { author: false, firstName: 'Yehuda', lastNam
 source = `
   raw: {{{specialChars}}}
   html-escaped: {{specialChars}}`;
-  
+
 XtejsUtils.Template.render(source, { specialChars: "& < > \" ' ` =" });
 // Would render:
 // raw: & < > " ' ` =
