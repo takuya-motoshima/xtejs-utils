@@ -132,4 +132,23 @@ export default class {
      * @return {string}
      */
     static add(date: string, step: number, unit: 'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds', format?: string): string;
+    /**
+     * Check if date is invalid
+     *
+     * @example
+     * import { Datetime } from 'xtejs-utils';
+     *
+     * Datetime.isValid('2012-05-25', 'YYYY-MM-DD', true); // true
+     * Datetime.isValid('2012.05.25', 'YYYY-MM-DD', true); // false
+     * Datetime.isValid('not a real date'); // false
+     * Datetime.isValid('2010 13', 'YYYY MM'); // false (not a real month)
+     * Datetime.isValid('2010 11 31', 'YYYY MM DD'); // false (not a real day)
+     * Datetime.isValid('2010 2 29', 'YYYY MM DD'); // false (not a leap year)
+     * Datetime.isValid('2010 notamonth 29', 'YYYY MMM DD'); // false (not a real month name)
+     *
+     * @param  {string}           date
+     * @param  {string|undefined} format
+     * @return {boolean}
+     */
+    static isValid(date: string, format?: string | undefined): boolean;
 }

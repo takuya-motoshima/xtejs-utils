@@ -4,7 +4,7 @@
 
 **XteJS utils** is a general utility class and function package.
 
-### &nbsp;<!-- Code required for line break in README header -->
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- Code required for line break in README header -->
 
 ## Installation
 
@@ -170,6 +170,15 @@ XtejsUtils.Datetime.add('2020/3/21, 9:00:00', 1, 'minutes', 'M/D/Y, H:mm:ss');//
 
 // Add seconds
 XtejsUtils.Datetime.add('2020/3/21, 9:00:00', 1, 'seconds', 'M/D/Y, H:mm:ss');// 3/21/2020, 9:00:01
+
+// Check if date is invalid
+XtejsUtils.Datetime.isValid('2012-05-25', 'YYYY-MM-DD', true); // true
+XtejsUtils.Datetime.isValid('2012.05.25', 'YYYY-MM-DD', true); // false
+XtejsUtils.Datetime.isValid('not a real date'); // false
+XtejsUtils.Datetime.isValid('2010 13', 'YYYY MM'); // false (not a real month)
+XtejsUtils.Datetime.isValid('2010 11 31', 'YYYY MM DD'); // false (not a real day)
+XtejsUtils.Datetime.isValid('2010 2 29', 'YYYY MM DD'); // false (not a leap year)
+XtejsUtils.Datetime.isValid('2010 notamonth 29', 'YYYY MMM DD'); // false (not a real month name)
 ```
 
 ### Graphic utility.
@@ -333,3 +342,7 @@ function myFunction() {}
 XtejsUtils.Types.isAsync(myFunction);// false
 XtejsUtils.Types.isAsync(myAsyncFunction);// true
 ```
+
+## Examples
+
+There are some examples in "./examples" in this package.Here is the first one to get you started.
