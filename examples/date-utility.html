@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XteJS utils | Date utility example</title>
+  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/shared.css?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->">
+  <link rel="stylesheet" type="text/css" href="styles/date-utility.css?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->">
+</head>
+<body class="min-vh-100">
+
+  <main class="container-fluid mt-3">
+
+    <h3>Date format</h3>
+
+    <div class="example">
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Date</label>
+        <div class="col-10">
+          <input class="form-control" type="datetime-local" id="input" autocomplete="autocomplete">
+          <small class="form-text text-muted">Please enter the date and time. Output in various formats.</small>
+        </div>
+      </div>
+
+      <table class="table date-formatted-list">
+        <thead>
+          <tr>
+            <th>Format</th>
+            <th>Result</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody id="result">
+          <tr>
+            <td data-format="YYYY"></td>
+            <td></td>
+            <td>4 or 2 digit year</td>
+          </tr>
+          <tr>
+            <td data-format="YY"></td>
+            <td></td>
+            <td>2 digit year</td>
+          </tr>
+          <tr>
+            <td data-format="Y"></td>
+            <td></td>
+            <td>Year with any number of digits and sign</td>
+          </tr>
+          <tr>
+            <td data-format="Q"></td>
+            <td></td>
+            <td>Quarter of year. Sets month to first month in quarter.</td>
+          </tr>
+          <tr>
+            <td data-format="M"></td>
+            <td></td>
+            <td>Month number</td>
+          </tr>
+          <tr>
+            <td data-format="MMM"></td>
+            <td></td>
+            <td>Month name</td>
+          </tr>
+          <tr>
+            <td data-format="D"></td>
+            <td></td>
+            <td>Day of month</td>
+          </tr>
+          <tr>
+            <td data-format="Do"></td>
+            <td></td>
+            <td>Day of month with ordinal</td>
+          </tr>
+          <tr>
+            <td data-format="DDD"></td>
+            <td></td>
+            <td>Day of year</td>
+          </tr>
+          <tr>
+            <td data-format="X"></td>
+            <td></td>
+            <td>Unix timestamp</td>
+          </tr>
+          <tr>
+            <td data-format="x"></td>
+            <td></td>
+            <td>Unix ms timestamp</td>
+          </tr>
+          <tr>
+            <td data-format="L"></td>
+            <td></td>
+            <td>Date (in local format)</td>
+          </tr>
+          <tr>
+            <td data-format="LL"></td>
+            <td></td>
+            <td>Month name, day of month, year</td>
+          </tr>
+          <tr>
+            <td data-format="LLL"></td>
+            <td></td>
+            <td>Month name, day of month, year, time</td>
+          </tr>
+          <tr>
+            <td data-format="LLLL"></td>
+            <td></td>
+            <td>Day of week, month name, day of month, year, time</td>
+          </tr>
+          <tr>
+            <td data-format="LT"></td>
+            <td></td>
+            <td>Time (without seconds)</td>
+          </tr>
+          <tr>
+            <td data-format="LTS"></td>
+            <td></td>
+            <td>Time (with seconds)</td>
+          </tr>
+          <tr>
+            <td data-format="H"></td>
+            <td></td>
+            <td>Hours (24 hour time)</td>
+          </tr>
+          <tr>
+            <td data-format="h"></td>
+            <td></td>
+            <td>Hours (12 hour time used with a A.)</td>
+          </tr>
+          <tr>
+            <td data-format="k"></td>
+            <td></td>
+            <td>Hours (24 hour time from 1 to 24)</td>
+          </tr>
+          <tr>
+            <td data-format="a"></td>
+            <td></td>
+            <td>Post or ante meridiem</td>
+          </tr>
+          <tr>
+            <td data-format="m"></td>
+            <td></td>
+            <td>Minutes</td>
+          </tr>
+          <tr>
+            <td data-format="s"></td>
+            <td></td>
+            <td>Seconds</td>
+          </tr>
+          <tr>
+            <td data-format="S"></td>
+            <td></td>
+            <td>Fractional seconds</td>
+          </tr>
+          <tr>
+            <td data-format="Z"></td>
+            <td></td>
+            <td>Offset from UTC as +-HH:mm, +-HHmm, or Z</td>
+          </tr>
+          <tr>
+            <td data-format="YYYY-MM-DDTHH:mm"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td data-format="YYYY-MM-DDTHH:mm:ss"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td data-format="YYYY-MM-DDTHH:mm:ss.SSS"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td data-format="YYYY-MM-DD"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td data-format="HH:mm"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td data-format="HH:mm:ss"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td data-format="HH:mm:ss.SSS"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td data-format="YYYY-[W]WW"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td data-format="YYYY-MM"></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </main>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="module" src="scripts/date-utility.js?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->"></script>
+</body>
+</html>
