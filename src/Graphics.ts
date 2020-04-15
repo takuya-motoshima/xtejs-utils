@@ -174,13 +174,13 @@ export default class {
   }
 
   /**
-   * Get dimensions and position to fit parent container
+   * Returns a bounding box that covers the container considering the "object-fit" css property
    * 
    * @param  {HTMLElement}                       container
    * @param  {HTMLImageElement|HTMLVideoElement} media
    * @return {IRect}
    */
-  public static getRectToFitContainer(container: HTMLElement, media: HTMLImageElement|HTMLVideoElement): IRect {
+  public static getOverlayRect(container: HTMLElement, media: HTMLImageElement|HTMLVideoElement): IRect {
     const {
       width: intrinsicWidth,
       height: intrinsicHeight
