@@ -73,13 +73,13 @@ export default class {
      */
     static getAngleBetweenCoordinates(x1: number, y1: number, x2: number, y2: number): number;
     /**
-     * Get dimensions and position to fit parent container
+     * Returns a bounding box that covers the container considering the "object-fit" css property
      *
      * @param  {HTMLElement}                       container
      * @param  {HTMLImageElement|HTMLVideoElement} media
      * @return {IRect}
      */
-    static getRectToFitContainer(container: HTMLElement, media: HTMLImageElement | HTMLVideoElement): IRect;
+    static getOverlayRect(container: HTMLElement, media: HTMLImageElement | HTMLVideoElement): IRect;
     /**
      * Returns the display dimensions and position of the media element
      *

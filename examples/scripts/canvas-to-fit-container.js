@@ -37,9 +37,7 @@ function setupControllers() {
 }
 
 function updateResultImage() {
-  const rect = XtejsUtils.Graphics.getRectToFitContainer(
-    $sampleImage.parent().get(0),
-    $sampleImage.get(0));
+  const rect = XtejsUtils.Graphics.getOverlayRect($sampleImage.parent().get(0), $sampleImage.get(0));
   const dimensions = XtejsUtils.Graphics.getMediaDimensions($sampleImage.get(0));
   $resultImage
     .attr({ width: dimensions.width, height: dimensions.height })
