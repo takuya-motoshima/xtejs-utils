@@ -95,8 +95,7 @@ const rows = {
 
 function getColorSquare(color) {
   const [ red, green, blue ] = XtejsUtils.Color[color].match(/rgb\((\d+),(\d+),(\d+)\)/).slice(1,4);
-  const name = color.replace(/^[a-z]/, char => char.toUpperCase());
-  return `<div class="color" style="background:${XtejsUtils.Color[color]}"><span>R ${red}</span><span>G ${green}</span><span>B ${blue}</span></div><span>${name}</span>`;
+  return `<div class="color" style="background:${XtejsUtils.Color[color]}"><span>R ${red}</span><span>G ${green}</span><span>B ${blue}</span></div><span>${color}</span>`;
 }
 
 const $fragment = $(document.createDocumentFragment());
