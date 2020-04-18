@@ -1,73 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>XteJS utils | Canvas to fit container example</title>
   <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="styles/shared.css?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->">
   <link rel="stylesheet" type="text/css" href="styles/canvas-to-fit-container.css?<!--# config timefmt="%Y%m%d%H%I%M%S" --><!--# echo var="date_local" -->">
 </head>
-<body class="min-vh-100">
-
-  <div id="loader" class="loader loader-bar is-active" data-text data-rounded ></div>
+<body>
 
   <div class="container-fluid">
 
-    <div class="row flex-xl-nowrap">
-
-      <div class="col-12 col-md-3 col-xl-2 sidebar">
-
-        <nav class="collapse controls">
-
-          <div class="form-group">
-            <label class="h6" for="objectFit">ObjectFit</label>
-            <select action-change-object-fit class="form-control" id="objectFit">
-              <option value="fill" selected>fill</option>
-              <option value="contain">contain</option>
+    <div class="row">
+      
+      <div class="col-12 col-md-2 sidebar">
+        <nav class="collapse control">
+          <div class="form-group px-4">
+            <label>ObjectFit</label>
+            <select action-change-objectfit class="form-control" id="objectfit">
+              <option value="contain" selected>contain</option>
               <option value="cover">cover</option>
+              <option value="fill">fill</option>
             </select>
           </div>
-
         </nav>
       </div>
 
-      <main class="col-12 col-md-4 col-xl-5 py-md-3 pl-md-5 content" role="main">
+      <main class="col-12 col-md-10 py-3" role="main">
 
-        <div class="image-container fullsize centering">
-          <img class="image" id="sampleImage">
-        </div>
+        <div class="row">
 
-        <div id="imagePicker" class="image-picker py-3 px-2">
-          <div class="image-list-wrapper">
-            <h6>Select sample image</h6>
-            <ul id="imageList" class="image-list list-group list-group-horizontal flex-wrap pt-1">
-              <li action-select-image class="list-group-item selected"><img src="images/landscape-rectangle.png"></li>
-              <li action-select-image class="list-group-item"><img src="images/portrait-rectangle.png"></li>
-            </ul>
-          </div>
+          <section class="col-12 col-md-6">
 
-          <div class="vertical-border"></div>
+            <div class="image-holder">
+              <img class="main-image" id="mainImage">
+            </div>
 
-          <div class="image-uploader">
-            <h6>Use any image</h6>
-            <label>
-              <span class="btn btn-outline-primary">
-                <i class="fas fa-upload mr-1"></i>Upload<input action-upload-image type="file" class="d-none" accept="image/*">
-              </span>
-            </label>
-          </div>
+            <div class="image-utilities py-3 px-2">
+              <div class="image-strip">
+                <h6>Select sample image</h6>
+                <div class="strip-container-scrollable">
+                  <ul id="stripContainer" class="strip-container">
+                    <li action-select-image class="strip-item selected"><img src="images/landscape-rectangle.png"></li>
+                    <li action-select-image class="strip-item"><img src="images/portrait-rectangle.png"></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="vertical-border"></div>
+              <div class="image-uploader">
+                <h6>Use any image</h6>
+                <label><span class="btn btn-outline-primary"><i class="fas fa-upload mr-1"></i>Upload<input action-upload-image type="file" class="d-none" accept="image/*"></span></label>
+              </div>
+            </div>
+          </section>
+
+          <section class="col-12 col-md-6">
+            <div class="result-container">
+              <canvas class="result-image" id="resultImage"></canvas>
+            </div>
+          </section>
         </div>
       </main>
-    
-      <div class="col-12 col-md-4 col-xl-5 py-md-3 pl-md-5">
-        <div class="result-container fullsize centering">
-          <canvas class="result-image" id="resultImage"></canvas>
-        </div>
-      </div>
-
     </div>
-
   </div>
 
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
