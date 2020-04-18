@@ -1,13 +1,22 @@
 import * as XtejsUtils from '../../dist/build.esm.js';
 
 // Draw rectangle
-const canvas1 = $('#canvas1').get(0);
-XtejsUtils.Graphics.drawRectangle(canvas1, 20, 20, 50, 50);
+var canvas = document.querySelector('#canvas1'), x = 10, y = 10, width = 50, height = 50;
+XtejsUtils.Graphics.drawRectangle(canvas, x, y, width, height);
 
-// Draw rectangle
-const canvas2 = $('#canvas2').get(0);
-XtejsUtils.Graphics.drawPoint(canvas2, 20, 20, { radius: 10 });
+// Draw a shaded rectangle
+var canvas = document.querySelector('#canvas1'), x = 20, y = 20, width = 50, height = 50, lineColor = '#ffffff', shadowBlur = 4;
+XtejsUtils.Graphics.drawRectangle(canvas, x, y, width, height, { lineColor, shadowBlur });
 
-// Draw only the corners of the rectangle
-const canvas3 = $('#canvas3').get(0);
-XtejsUtils.Graphics.drawRectangleCorners(canvas3, 20, 20, 50, 50);
+// Draw points
+var canvas = document.querySelector('#canvas2'), x = 20, y = 20, radius = 10;;
+XtejsUtils.Graphics.drawPoint(canvas, x, y, { radius });
+
+// Draw the corners of a rectangle
+var canvas = document.querySelector('#canvas3'), x = 10, y = 10, width = 50, height = 50;
+XtejsUtils.Graphics.drawRectangleCorners(canvas, x, y, width, height);
+
+// Draw the corners of a shaded rectangle
+var canvas = document.querySelector('#canvas3'), x = 20, y = 20, width = 50, height = 50, lineColor = '#ffffff', shadowBlur = 4;
+XtejsUtils.Graphics.drawRectangleCorners(canvas, x, y, width, height, { lineColor, shadowBlur });
+

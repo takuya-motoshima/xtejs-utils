@@ -132,13 +132,17 @@ export default class {
      * @param  {number} height
      * @param  {number} options.degree
      * @param  {number} options.lineWidth
-     * @param  {string} options.color
+     * @param  {string} options.lineColor
+     * @param  {number} options.shadowBlur
+     * @param  {string} options.shadowColor
      * @return {void}
      */
-    static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree, lineWidth, color }?: {
+    static drawRectangle(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { degree, lineWidth, lineColor, shadowBlur, shadowColor }?: {
         degree?: number;
         lineWidth?: number;
-        color?: string;
+        lineColor?: string;
+        shadowBlur?: number;
+        shadowColor?: string;
     }): void;
     /**
      * Draw rectangle corners
@@ -149,12 +153,16 @@ export default class {
      * @param  {number} width
      * @param  {number} height
      * @param  {number} options.lineWidth
-     * @param  {string} options.color
+     * @param  {string} options.lineColor
+     * @param  {number} options.shadowBlur
+     * @param  {string} options.shadowColor
      * @return {void}
      */
-    static drawRectangleCorners(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { lineWidth, color }?: {
+    static drawRectangleCorners(canvas: HTMLCanvasElement, x: number, y: number, width: number, height: number, { lineWidth, lineColor, shadowBlur, shadowColor }?: {
         lineWidth?: number;
-        color?: string;
+        lineColor?: string;
+        shadowBlur?: number;
+        shadowColor?: string;
     }): void;
     /**
      * Clear canvas
