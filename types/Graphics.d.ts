@@ -34,7 +34,7 @@ export default class {
      */
     static awaitMediaLoaded(media: HTMLImageElement | HTMLVideoElement): Promise<Event>;
     /**
-     * Get the coordinates of a rotated rectangle
+     * Returns the coordinates of the rotated rectangle
      *
      * @param  {number} x
      * @param  {number} y
@@ -45,7 +45,7 @@ export default class {
      */
     static getRotatedRectCoordinates(x: number, y: number, width: number, height: number, degree?: number): ICoordinate[];
     /**
-     * Get rotation coordinates
+     * Returns rotated coordinates
      *
      * @param  {number} x1
      * @param  {number} y2
@@ -56,14 +56,14 @@ export default class {
      */
     private static getRotationCoordinate;
     /**
-     * Get the center coordinate of multiple coordinates
+     * Returns the center coordinates
      *
      * @param  {ICoordinate[]} coordinates
      * @return {ICoordinate} coordinate Center coordinates
      */
     static getCenterCoordinate(...coordinates: ICoordinate[]): ICoordinate;
     /**
-     * Get the angle of two coordinates
+     * Returns the angle between two coordinates
      *
      * @param  {number} x1
      * @param  {number} y1
@@ -72,6 +72,16 @@ export default class {
      * @return {number}
      */
     static getAngleBetweenCoordinates(x1: number, y1: number, x2: number, y2: number): number;
+    /**
+     * Returns the distance between two coordinates
+     *
+     * @param  {number} x1
+     * @param  {number} y1
+     * @param  {number} x2
+     * @param  {number} y2
+     * @return {number}
+     */
+    static getDistance(x1: number, y1: number, x2: number, y2: number): number;
     /**
      * Returns a bounding box that covers the container considering the "object-fit" css property
      *
