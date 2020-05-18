@@ -297,34 +297,34 @@ Template.compile(`
 // </ul>
 
 // Round the decimal point
-TemplaTemplate.compile('{{value}} round to {{round value}}')({ value: 1.4 });// 1.4 round to 1
-TemplaTemplate.compile('{{value}} round to {{round value}}')({ value: 1.5 });// 1.5 round to 2
-TemplaTemplate.compile('{{value}} round to {{round value}}')({ value: 1.6 });// 1.6 round to 2
+Template.compile('{{value}} round to {{round value}}')({ value: 1.4 });// 1.4 round to 1
+Template.compile('{{value}} round to {{round value}}')({ value: 1.5 });// 1.5 round to 2
+Template.compile('{{value}} round to {{round value}}')({ value: 1.6 });// 1.6 round to 2
 
 // Rounds the second decimal place
-TemplaTemplate.compile('{{value}} round to {{round 2 value}}')({ value: 1.016 });// 1.016 round to 1.02
-TemplaTemplate.compile('{{value}} round to {{round 2 value}}')({ value: 1.015 });// 1.015 round to 1.02
-TemplaTemplate.compile('{{value}} round to {{round 2 value}}')({ value: 1.014 });// 1.014 round to 1.01
+Template.compile('{{value}} round to {{round 2 value}}')({ value: 1.016 });// 1.016 round to 1.02
+Template.compile('{{value}} round to {{round 2 value}}')({ value: 1.015 });// 1.015 round to 1.02
+Template.compile('{{value}} round to {{round 2 value}}')({ value: 1.014 });// 1.014 round to 1.01
 
 // Round up the decimal point
-TemplaTemplate.compile('{{value}} ceil to {{ceil value}}')({ value: 1.4 });// 1.4 ceil to 2
-TemplaTemplate.compile('{{value}} ceil to {{ceil value}}')({ value: 1.5 });// 1.5 ceil to 2
-TemplaTemplate.compile('{{value}} ceil to {{ceil value}}')({ value: 1.6 });// 1.6 ceil to 2
+Template.compile('{{value}} ceil to {{ceil value}}')({ value: 1.4 });// 1.4 ceil to 2
+Template.compile('{{value}} ceil to {{ceil value}}')({ value: 1.5 });// 1.5 ceil to 2
+Template.compile('{{value}} ceil to {{ceil value}}')({ value: 1.6 });// 1.6 ceil to 2
 
 // Rounded up to two decimal places
-TemplaTemplate.compile('{{value}} ceil to {{ceil 2 value}}')({ value: 1.016 });// 1.016 ceil to 1.02
-TemplaTemplate.compile('{{value}} ceil to {{ceil 2 value}}')({ value: 1.015 });// 1.015 ceil to 1.02
-TemplaTemplate.compile('{{value}} ceil to {{ceil 2 value}}')({ value: 1.014 });// 1.014 ceil to 1.02
+Template.compile('{{value}} ceil to {{ceil 2 value}}')({ value: 1.016 });// 1.016 ceil to 1.02
+Template.compile('{{value}} ceil to {{ceil 2 value}}')({ value: 1.015 });// 1.015 ceil to 1.02
+Template.compile('{{value}} ceil to {{ceil 2 value}}')({ value: 1.014 });// 1.014 ceil to 1.02
 
 // Round down the decimal point
-TemplaTemplate.compile('{{value}} floor to {{floor value}}')({ value: 1.4 });// 1.4 floor to 1
-TemplaTemplate.compile('{{value}} floor to {{floor value}}')({ value: 1.5 });// 1.5 floor to 1
-TemplaTemplate.compile('{{value}} floor to {{floor value}}')({ value: 1.6 });// 1.6 floor to 1
+Template.compile('{{value}} floor to {{floor value}}')({ value: 1.4 });// 1.4 floor to 1
+Template.compile('{{value}} floor to {{floor value}}')({ value: 1.5 });// 1.5 floor to 1
+Template.compile('{{value}} floor to {{floor value}}')({ value: 1.6 });// 1.6 floor to 1
 
 // Rounded down to two decimal places
-TemplaTemplate.compile('{{value}} floor to {{floor 2 value}}')({ value: 1.016 });// 1.016 floor to 1.01
-TemplaTemplate.compile('{{value}} floor to {{floor 2 value}}')({ value: 1.015 });// 1.015 floor to 1.01
-TemplaTemplate.compile('{{value}} floor to {{floor 2 value}}')({ value: 1.014 });// 1.014 floor to 1.01
+Template.compile('{{value}} floor to {{floor 2 value}}')({ value: 1.016 });// 1.016 floor to 1.01
+Template.compile('{{value}} floor to {{floor 2 value}}')({ value: 1.015 });// 1.015 floor to 1.01
+Template.compile('{{value}} floor to {{floor 2 value}}')({ value: 1.014 });// 1.014 floor to 1.01
 ```
 
 Returns the result of compiling the template
