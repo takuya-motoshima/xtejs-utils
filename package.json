@@ -1,6 +1,6 @@
 {
   "name": "xtejs-utils",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "This package is a general utility class and function package.",
   "main": "dist/build.common.js",
   "module": "dist/build.esm.js",
