@@ -1,11 +1,28 @@
+## 1.1.0 (May 18, 2020)
+
+### Graphics.
+
+* Added a function to find the distance between two coordinates in the Graphics class.
+
+    ```js
+    import { Graphics } from 'xtejs-utils';
+
+    // Calculate the distance between (x1, y1) and (x2, y2) coordinates
+    const x1 = 10;
+    const y1 = 20;
+    const x2 = 30;
+    const y2 = 40;
+    Graphics.getDistance(x1, y1, x2, y2);// 28.284271247461902
+    ```
 
 ## 1.0.8 (May 18, 2020)
 
 ### Template engine.
+
 * Added a helper function for round, floor and ceil to the template engine.
 
     ```js
-    import { Template } from "xtejs-utils";
+    import { Template } from 'xtejs-utils';
     
     // Round the decimal point
     Template.render('{{value}} round to {{round value}}', { value: 1.4 });// 1.4 round to 1

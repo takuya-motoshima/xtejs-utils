@@ -86,7 +86,7 @@ export default class {
   }
 
   /**
-   * Get the coordinates of a rotated rectangle
+   * Returns the coordinates of the rotated rectangle
    * 
    * @param  {number} x
    * @param  {number} y
@@ -95,13 +95,7 @@ export default class {
    * @param  {number} degree
    * @return {ICoordinate[]}
    */
-  public static getRotatedRectCoordinates(
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    degree: number = 0
-  ): ICoordinate[] {
+  public static getRotatedRectCoordinates(x: number, y: number, width: number, height: number, degree: number = 0): ICoordinate[] {
     let corner1;// Upper left corner
     let corner2;// Upper right corner
     let corner3;// Lower right corner
@@ -123,7 +117,7 @@ export default class {
   }
 
   /**
-   * Get rotation coordinates
+   * Returns rotated coordinates
    * 
    * @param  {number} x1
    * @param  {number} y2
@@ -132,13 +126,7 @@ export default class {
    * @param  {number} degree
    * @return {ICoordinate} coordinate Coordinate after rotation
    */
-  private static getRotationCoordinate(
-    x1: number,
-    y1: number,
-    x2: number,
-    y2: number,
-    degree: number
-  ): ICoordinate {
+  private static getRotationCoordinate(x1: number, y1: number, x2: number, y2: number, degree: number): ICoordinate {
     const radian = degree * (Math.PI / 180);
     const sin = Math.sin(radian); 
     const cos = Math.cos(radian);
@@ -149,7 +137,7 @@ export default class {
   }
 
   /**
-   * Get the center coordinate of multiple coordinates
+   * Returns the center coordinates
    * 
    * @param  {ICoordinate[]} coordinates
    * @return {ICoordinate} coordinate Center coordinates
@@ -166,7 +154,7 @@ export default class {
   }
 
   /**
-   * Get the angle of two coordinates
+   * Returns the angle between two coordinates
    * 
    * @param  {number} x1
    * @param  {number} y1
@@ -174,12 +162,7 @@ export default class {
    * @param  {number} y2
    * @return {number}
    */
-  public static getAngleBetweenCoordinates(
-    x1: number,
-    y1: number,
-    x2: number,
-    y2: number
-  ): number {
+  public static getAngleBetweenCoordinates(x1: number, y1: number, x2: number, y2: number): number {
     const radian = Math.atan2(y2 - y1, x2 - x1);
     const degree = radian * 180 / Math.PI;
     // const radian = Math.atan2(x2 - x1, y2 - y1);
@@ -188,6 +171,19 @@ export default class {
     //   degree += 360;
     // }
     return degree;
+  }
+
+  /**
+   * Returns the distance between two coordinates
+   * 
+   * @param  {number} x1
+   * @param  {number} y1
+   * @param  {number} x2
+   * @param  {number} y2
+   * @return {number}
+   */
+  public static getDistance(x1: number, y1: number, x2: number, y2: number): number {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
   }
 
   /**
@@ -338,18 +334,7 @@ export default class {
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawPoint(
-    canvas: HTMLCanvasElement,
-    x: number,
-    y: number,
-    {
-      radius = 3,
-      color = Color.accessibleBlue
-    }: {
-      radius?: number,
-      color?: string
-    } = {}
-  ): void {
+  public static drawPoint(canvas: HTMLCanvasElement, x: number, y: number, { radius = 3, color = Color.accessibleBlue }: { radius?: number, color?: string } = {}): void {
     const context = canvas.getContext('2d')!;
     context.beginPath();
     context.arc(x, y, radius, 0, 2 * Math.PI);
@@ -366,17 +351,7 @@ export default class {
    * @param  {string} options.color
    * @return {void}
    */
-  public static drawCenterPoint(
-    canvas: HTMLCanvasElement,
-    coordinates: ICoordinate[],
-    {
-      radius = 3,
-      color = Color.accessibleBlue
-    }: {
-      radius?: number,
-      color?: string
-    } = {}
-  ): void {
+  public static drawCenterPoint(canvas: HTMLCanvasElement, coordinates: ICoordinate[], { radius = 3, color = Color.accessibleBlue }: { radius?: number, color?: string } = {}): void {
     const { x, y } = this.getCenterCoordinate(...coordinates);
     this.drawPoint(canvas, x, y, { radius, color });
   }
