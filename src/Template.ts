@@ -6,15 +6,124 @@
 import Handlebars from 'handlebars';
 
 /**
+ * Shift operation
+ * 
+ * @param {number}  number
+ * @param {number}  precision
+ * @param {boolean} reverseShift
+ */
+function shift(number: number, precision: number, reverseShift: boolean): number {
+  if (reverseShift) {
+    precision = -precision;
+  }
+  const numArray = ('' + number).split('e');
+  return +(numArray[0] + 'e' + (numArray[1] ? (+numArray[1] + precision) : precision));
+}
+
+// Get the `Math.ceil()` of the given value.
+Handlebars.registerHelper('ceil', (number: number, precision: number = 0) => {
+  console.log(`Ceil number: ${number}, precision: ${precision}`);
+  return shift(Math.ceil(shift(number, precision, false)), precision, true);
+});
+
+// Get the `Math.floor()` of the given value.
+Handlebars.registerHelper('floor', (number: number, precision: number = 0) => {
+  console.log(`Floor number: ${number}, precision: ${precision}`);
+  return shift(Math.floor(shift(number, precision, false)), precision, true);
+});
+
+// Round the given number.
+// Handlebars.registerHelper('round', (number: number, precision: number = 0) => {
+Handlebars.registerHelper('round', (number: number) => {
+  return number;
+  // console.log(`Round number: ${number}, precision: ${precision}`);
+  // return shift(Math.round(shift(number, precision, false)), precision, true);
+});
+
+/**
  * Embedded JavaScript templates
  */
-export default class {
+export default class Template {
+
+  private static _compiler: typeof Handlebars|undefined = undefined;
+
+  /**
+   *
+   * Return Handlebars class containing helper functions
+   * 
+   * @return {Handlebars}
+   */
+  private static get compiler(): typeof Handlebars {
+    if (!Template._compiler) {
+      /**
+       * Shift operation
+       * 
+       * @param {number}  number
+       * @param {number}  precision
+       * @param {boolean} reverseShift
+       */
+      function shift(number: number, precision: number, reverseShift: boolean): number {
+        if (reverseShift) {
+          precision = -precision;
+        }
+        const numArray = ('' + number).split('e');
+        return +(numArray[0] + 'e' + (numArray[1] ? (+numArray[1] + precision) : precision));
+      }
+
+      // Get the `Math.ceil()` of the given value.
+      Handlebars.registerHelper('ceil', (...args: any[]) => {
+        let number: number;
+        let precision: number = 0;
+        if (args.length === 2) {
+          number = args[0];
+        } else if (args.length === 3) {
+          precision = args[0];
+          number = args[1];
+        } else {
+          throw new Error('Invalid argument');
+        }
+        return shift(Math.ceil(shift(number, precision, false)), precision, true);
+      });
+
+      // Get the `Math.floor()` of the given value.
+      Handlebars.registerHelper('floor', (...args: any[]) => {
+        let number: number;
+        let precision: number = 0;
+        if (args.length === 2) {
+          number = args[0];
+        } else if (args.length === 3) {
+          precision = args[0];
+          number = args[1];
+        } else {
+          throw new Error('Invalid argument');
+        }
+        return shift(Math.floor(shift(number, precision, false)), precision, true);
+      });
+
+      // Round the given number.
+      Handlebars.registerHelper('round', (...args: any[]) => {
+        let number: number;
+        let precision: number = 0;
+        if (args.length === 2) {
+          number = args[0];
+        } else if (args.length === 3) {
+          precision = args[0];
+          number = args[1];
+        } else {
+          throw new Error('Invalid argument');
+        }
+        return shift(Math.round(shift(number, precision, false)), precision, true);
+      });
+      Template._compiler = Handlebars;
+    }
+    return Template._compiler;
+  }
 
   /**
    * Compiles a template so it can be executed immediately.
    * 
    * @example
-   * import { Template } from 'xtejs-utils';
+   * import { Template } from "xtejs-utils";
    *
    * // #Basic Usage
    * let source = `
@@ -108,14 +217,15 @@ export default class {
    * @param {string} source
    */
   public static compile(source: string): HandlebarsTemplateDelegate<any> {
-    return Handlebars.create().compile<any>(source);
+    return Template.compiler.compile<any>(source);
+    // return Handlebars.create().compile<any>(source);
   }
 
   /**
    * Returns the result of compiling the template
    *
    * @example
-   * import { Template } from 'xtejs-utils';
+   * import { Template } from "xtejs-utils";
    *
    * // #Basic Usage
    * let source = `

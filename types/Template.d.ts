@@ -1,12 +1,20 @@
 /**
  * Embedded JavaScript templates
  */
-export default class {
+export default class Template {
+    private static _compiler;
+    /**
+     *
+     * Return Handlebars class containing helper functions
+     *
+     * @return {Handlebars}
+     */
+    private static get compiler();
     /**
      * Compiles a template so it can be executed immediately.
      *
      * @example
-     * import { Template } from 'xtejs-utils';
+     * import { Template } from "xtejs-utils";
      *
      * // #Basic Usage
      * let source = `
@@ -104,7 +112,7 @@ export default class {
      * Returns the result of compiling the template
      *
      * @example
-     * import { Template } from 'xtejs-utils';
+     * import { Template } from "xtejs-utils";
      *
      * // #Basic Usage
      * let source = `
