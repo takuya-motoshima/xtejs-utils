@@ -1,10 +1,6 @@
 # xtejs-utils
 
-<img src="https://raw.githubusercontent.com/takuya-motoshima/xtejs-utils/master/documents/brand.png" width="58" height="90" align="left" hspace="10" vspace="6">
-
-**XteJS utils** is a general utility class and function package.
-
-### &nbsp;<!-- Code required for line break in README header -->
+This is a general utility class and function package.
 
 ## Installation
 
@@ -79,7 +75,7 @@ Collection.unique();
 
 The following color values ​​are various colors that adapt to changing accessibility settings.
 
-![System color list](https://raw.githubusercontent.com/takuya-motoshima/xtejs-utils/master/documents/system-color-list.png)
+![System color list](system-color.png)
 
 ```js
 import { Color } from "xtejs-utils";
